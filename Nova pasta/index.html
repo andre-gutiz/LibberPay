@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibberPay - Soluções em Meios de Pagamento</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'liberpay-green': '#00C851',
+                        'liberpay-blue': '#007BFF',
+                        'liberpay-dark-green': '#00A844'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- SDK do EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body class="bg-white text-black font-sans">
+
+    <!-- GRID GLOBAL FIXO (aplicado uma única vez em todo o site) -->
+    <div aria-hidden="true"
+         class="fixed inset-0 z-0 opacity-[0.06] pointer-events-none
+                [background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)]
+                [background-size:24px_24px]"></div>
+
+    <!-- Header Limpo -->
+        <header class="fixed inset-x-0 top-0 z-50 overflow-hidden border-b shadow-sm bg-[#020617] text-white">
+        <!-- FUNDO COM BOLHAS -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <!-- Gradiente base -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#0a2640] to-[#022c22] opacity-95"></div>
+            
+            <!-- UMA aurora suave -->
+            <div class="absolute left-1/3 top-0 w-[35rem] h-[35rem] rounded-full bg-cyan-500/15 blur-[100px]"></div>
+            
+            <!-- BOLHAS FLUTUANTES RANDOMICAS (mesmo sistema da seção produtos) -->
+            <div id="header-bubbles" class="absolute inset-0 pointer-events-none"></div>
+        </div>
+
+        <!-- CONTEÚDO -->
+        <div class="container relative z-10 mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <img src="assets/logo/Captura de tela 2025-08-24 011938.png"
+                            alt="Logo Libberpay"
+                            class="h-[75px] w-auto object-contain block" />
+
+                        <!-- Linha animada sob o logo -->
+                        <div class="absolute left-0 right-0 bottom-[8px] pointer-events-none flex">
+                            <div class="relative" style="left:24%; width:64%;">
+                                <div class="relative h-[3px] rounded-full overflow-hidden bg-slate-200/14">
+                                    <div class="absolute inset-0 bg-gradient-to-r 
+                                                from-transparent via-green-400/90 to-transparent
+                                                animate-[flowRightBright_3s_linear_infinite]"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-r 
+                                                from-transparent via-cyan-400/90 to-transparent
+                                                animate-[flowLeftBright_3.6s_linear_infinite]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nav -->
+                <nav class="hidden md:flex items-center gap-8 relative">
+                    <ul id="nav" class="flex gap-8">
+                        <li><a class="nav-link text-slate-200 hover:text-green-400 transition-colors" href="#home">Início</a></li>
+                        <li><a class="nav-link text-slate-200 hover:text-green-400 transition-colors" href="#sobre">Sobre</a></li>
+                        <li><a class="nav-link text-slate-200 hover:text-green-400 transition-colors" href="#servicos">Serviços</a></li>
+                        <li><a class="nav-link text-slate-200 hover:text-green-400 transition-colors" href="#produtos">Produtos</a></li>
+                        <li><a class="nav-link text-slate-200 hover:text-green-400 transition-colors" href="#contato">Contato</a></li>
+                    </ul>
+                    <span id="nav-underline"
+                        class="pointer-events-none absolute -bottom-2 left-0 h-[2px] w-0 rounded
+                                bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400
+                                transition-all duration-300"></span>
+                </nav>
+
+                <!-- CTAs -->
+                <div class="hidden sm:flex gap-3">
+                    <a href="#contato"
+                    class="px-5 py-2 rounded-lg bg-gradient-to-r from-green-500 to-cyan-500 text-white
+                            shadow-[0_6px_20px_-6px_rgba(6,182,212,0.55)]
+                            hover:shadow-[0_8px_30px_-8px_rgba(16,185,129,0.55)]
+                            transition-all font-semibold">
+                        Pedir Agora
+                    </a>
+                    <a href="login.html"
+                    class="px-5 py-2 rounded-lg border border-slate-500/40 text-slate-100 hover:bg-white/5 transition font-semibold">
+                        Acessar Conta
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESTILOS DAS ANIMAÇÕES -->
+        <style>
+            @keyframes flowRightBright {
+                0%   { transform: translateX(-120%); opacity: .8; }
+                50%  { transform: translateX(0); opacity: 1; }
+                100% { transform: translateX(120%); opacity: .8; }
+            }
+            @keyframes flowLeftBright {
+                0%   { transform: translateX(120%); opacity: .8; }
+                50%  { transform: translateX(0); opacity: 1; }
+                100% { transform: translateX(-120%); opacity: .8; }
+            }
+        </style>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="h-12 md:h-16 lg:h-24"></div>
+    <section id="home" class="bg-gradient-to-r from-white to-gray-50 relative z-10">
+        <div class="container mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left: Text Content -->
+            <div>
+                <h2 class="text-5xl lg:text-5xl font-extrabold leading-tight mb-6">
+                    Revolucione seus<a> pagamentos <a> com a <span class="text-liberpay-green">LibberPay</span>
+                </h2>
+                <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                    A LibberPay oferece soluções completas em meios de pagamento para empresas de todos os tamanhos. Simplifique suas transações e acelere seu crescimento.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#produtos" class="bg-liberpay-green hover:bg-liberpay-dark-green text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors duration-300 shadow">
+                        Nossos Produtos
+                    </a>
+                    <a href="https://www.instagram.com/libberpay?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="border-2 border-liberpay-blue text-liberpay-blue hover:bg-liberpay-blue hover:text-white px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300" target="_blank" rel="noopener noreferrer">
+                        Saiba Mais
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Image + Overlay Card -->
+            <div class="relative">
+                <img src="assets/servicos/4a692a12-3994-4f9d-b580-48075aea6565.webp" alt="Pessoa usando celular para pagamento" class="w-full h-[420px] object-cover rounded-2xl shadow-2xl"/>
+                <!-- overlay card -->
+                <div class="absolute left-6 bottom-8 bg-white/60 backdrop-blur-sm rounded-2xl p-5 w-11/12 lg:w-9/12 shadow-lg border-t-4 border-liberpay-green">
+                    <div class="flex items-center gap-4">
+                        <img src="assets/servicos/pagamento seguro.png" alt="Pagamento Seguro" class="w-12 h-12 object-contain"/>
+                        <div>
+                            <div class="text-sm text-gray-500">Pagamentos</div>
+                            <div class="font-semibold">100% seguros e monitorados</div>
+                        </div>
+                        <a href="https://www.instagram.com/libberpay?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="ml-auto text-sm text-liberpay-blue font-semibold" target="_blank" rel="noopener noreferrer">Saiba mais →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - SHOW COMPLETO DE EFEITOS -->
+    <section id="sobre" class="relative py-24 overflow-hidden bg-gradient-to-br from-[#050d17] via-[#081427] to-[#06101b] text-white">
+        
+        <!-- ANEL HOLOGRÁFICO GIRANDO -->
+        <div aria-hidden="true"
+             class="pointer-events-none absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 h-[1100px] w-[1100px] rounded-full blur-3xl opacity-30
+                    animate-[spin_70s_linear_infinite]
+                    bg-[conic-gradient(from_210deg_at_50%_50%,transparent_0_36%,rgba(0,123,255,0.42)_42%,transparent_52%,rgba(0,200,81,0.42)_60%,transparent_68%,rgba(0,123,255,0.3)_78%,transparent_100%)]"></div>
+
+        <!-- AURORAS PULSANTES -->
+        <div aria-hidden="true"
+             class="pointer-events-none absolute -top-48 -left-48 h-[620px] w-[620px] rounded-full blur-3xl opacity-50
+                    animate-[pulse_9s_ease-in-out_infinite]
+                    bg-[radial-gradient(circle_at_center,_rgba(0,123,255,0.55),_transparent_60%)]"></div>
+        <div aria-hidden="true"
+             class="pointer-events-none absolute -bottom-56 -right-48 h-[680px] w-[680px] rounded-full blur-3xl opacity-45
+                    animate-[pulse_11s_ease-in-out_infinite]
+                    bg-[radial-gradient(circle_at_center,_rgba(0,200,81,0.5),_transparent_60%)]"></div>
+
+        <!-- FEIXES DIAGONAIS -->
+        <div aria-hidden="true"
+             class="pointer-events-none absolute left-[-25%] top-1/3 w-[150%] h-px rotate-[-12deg]
+                    bg-gradient-to-r from-transparent via-liberpay-green/80 to-transparent blur-[1px] opacity-70"></div>
+        <div aria-hidden="true"
+             class="pointer-events-none absolute left-[-18%] top-2/3 w-[150%] h-[2px] rotate-[10deg]
+                    bg-gradient-to-r from-transparent via-liberpay-blue/80 to-transparent blur-[2px] opacity-60"></div>
+
+        <!-- SATÉLITES ORBITANDO -->
+        <div aria-hidden="true"
+             class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full animate-[spin_56s_linear_infinite]">
+            <span class="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-liberpay-green shadow-[0_0_18px_rgba(0,200,81,.9)]"></span>
+        </div>
+        <div aria-hidden="true"
+             class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full animate-[spin_38s_linear_infinite]">
+            <span class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-liberpay-blue shadow-[0_0_16px_rgba(0,123,255,.9)]"></span>
+        </div>
+
+        <!-- PARTÍCULAS -->
+        <span aria-hidden="true" class="pointer-events-none absolute left-[10%] top-[16%] w-3 h-3 rounded-full bg-white/60 blur-[1px] animate-[ping_8s_linear_infinite]"></span>
+        <span aria-hidden="true" class="pointer-events-none absolute right-[15%] top-[26%] w-2.5 h-2.5 rounded-full bg-white/50 blur-[1px] animate-[ping_10s_linear_infinite]"></span>
+        <span aria-hidden="true" class="pointer-events-none absolute left-[20%] bottom-[16%] w-2 h-2 rounded-full bg-white/50 blur-[1px] animate-[ping_12s_linear_infinite]"></span>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold mb-4 tracking-tight">Sobre a LibberPay</h2>
+                <div class="relative w-36 h-1 mx-auto mb-8 overflow-hidden rounded">
+                    <div class="absolute inset-0 bg-gradient-to-r from-liberpay-green via-white/70 to-liberpay-blue"></div>
+                </div>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                    Somos especialistas em soluções de pagamento, unindo segurança, rapidez e flexibilidade para impulsionar seu crescimento.
+                </p>
+            </div>
+
+            <!-- Cards com brilho e lift no hover -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group relative overflow-hidden text-center p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur
+                            transition-all duration-300 hover:-translate-y-1 hover:border-liberpay-green/60
+                            hover:shadow-[0_12px_40px_rgba(0,200,81,.14)]">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="w-16 h-16 bg-gradient-to-r from-liberpay-green to-liberpay-blue rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg shadow-liberpay-green/30">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Segurança Total</h3>
+                    <p class="text-gray-300">Criptografia de última geração e monitoramento contínuo para proteger cada transação.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group relative overflow-hidden text-center p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur
+                            transition-all duration-300 hover:-translate-y-1 hover:border-liberpay-blue/60
+                            hover:shadow-[0_12px_40px_rgba(0,123,255,.14)]">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="w-16 h-16 bg-liberpay-blue rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg shadow-liberpay-blue/30">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Rapidez</h3>
+                    <p class="text-gray-300">Pagamentos aprovados em instantes para uma experiência fluida e eficiente.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group relative overflow-hidden text-center p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur
+                            transition-all duration-300 hover:-translate-y-1 hover:border-liberpay-green/60
+                            hover:shadow-[0_12px_40px_rgba(0,200,81,.14)]">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="w-16 h-16 bg-gradient-to-r from-liberpay-green to-liberpay-blue rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg shadow-liberpay-green/30">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Flexibilidade</h3>
+                    <p class="text-gray-300">Soluções sob medida que se adaptam às necessidades do seu negócio.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bandeiras Section (dentro da mesma seção Sobre) -->
+        <div class="h-12 md:h-16 lg:h-24"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold mb-4 tracking-tight">Bandeiras Aceitas</h2>
+                <div class="relative w-32 h-1 mx-auto mb-8 overflow-hidden rounded">
+                    <div class="absolute inset-0 bg-gradient-to-r from-liberpay-green via-white/70 to-liberpay-blue"></div>
+                </div>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                    Aceite todas as principais bandeiras de cartão e métodos de pagamento do mercado
+                </p>
+            </div>
+
+            <!-- Grid de bandeiras -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
+                <!-- Visa -->
+                <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
+                            transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,200,81,.12)]
+                            hover:border-liberpay-green/60">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="inline-flex items-center justify-center w-28 h-16 rounded-md bg-white/90 shadow-inner shadow-black/10">
+                            <img src="assets/bandeiras/visa.png" alt="Visa" class="max-h-8 object-contain" />
+                        </div>
+                        <div class="mt-3 text-xs font-semibold tracking-wide text-gray-300">Visa</div>
+                    </div>
+                </div>
+
+                <!-- Mastercard -->
+                <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
+                            transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,123,255,.12)]
+                            hover:border-liberpay-blue/60">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="inline-flex items-center justify-center w-28 h-16 rounded-md bg-white/90 shadow-inner shadow-black/10">
+                            <img src="assets/bandeiras/mastercard.png" alt="Mastercard" class="max-h-8 object-contain" />
+                        </div>
+                        <div class="mt-3 text-xs font-semibold tracking-wide text-gray-300">Mastercard</div>
+                    </div>
+                </div>
+
+                <!-- Elo -->
+                <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
+                            transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,200,81,.12)]
+                            hover:border-liberpay-green/60">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="inline-flex items-center justify-center w-28 h-16 rounded-md bg-white/90 shadow-inner shadow-black/10">
+                            <img src="assets/bandeiras/elo.png" alt="Elo" class="max-h-8 object-contain" />
+                        </div>
+                        <div class="mt-3 text-xs font-semibold tracking-wide text-gray-300">Elo</div>
+                    </div>
+                </div>
+
+                <!-- Banco do Brasil -->
+                <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
+                            transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,123,255,.12)]
+                            hover:border-liberpay-blue/60">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="inline-flex items-center justify-center w-28 h-16 rounded-md bg-white/90 shadow-inner shadow-black/10">
+                            <img src="assets/bandeiras/bancodobrasil.png" alt="Banco do Brasil" class="max-h-8 object-contain" />
+                        </div>
+                        <div class="mt-3 text-xs font-semibold tracking-wide text-gray-300">Banco do Brasil</div>
+                    </div>
+                </div>
+
+                <!-- Bradesco -->
+                <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
+                            transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,200,81,.12)]
+                            hover:border-liberpay-green/60">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="inline-flex items-center justify-center w-28 h-16 rounded-md bg-white/90 shadow-inner shadow-black/10">
+                            <img src="assets/bandeiras/bradesco.png" alt="Bradesco" class="max-h-8 object-contain" />
+                        </div>
+                        <div class="mt-3 text-xs font-semibold tracking-wide text-gray-300">Bradesco</div>
+                    </div>
+                </div>
+
+                <!-- Maestro -->
+                <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
+                            transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,123,255,.12)]
+                            hover:border-liberpay-blue/60">
+                    <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
+                                bg-gradient-to-b from-transparent via-white/40 to-transparent
+                                transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="inline-flex items-center justify-center w-28 h-16 rounded-md bg-white/90 shadow-inner shadow-black/10">
+                            <img src="assets/bandeiras/Maestro.png" alt="Maestro" class="max-h-8 object-contain" />
+                        </div>
+                        <div class="mt-3 text-xs font-semibold tracking-wide text-gray-300">Maestro</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="relative overflow-hidden py-24 bg-slate-50">
+    <!-- fundo digital suave -->
+    <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-20 h-80 w-80 rounded-full bg-emerald-400/15 blur-3xl"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-28 -right-16 h-96 w-96 rounded-full bg-cyan-400/15 blur-3xl"></div>
+
+    <div class="container relative z-10 mx-auto px-6">
+        <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">Nossos Serviços</h2>
+        <!-- barrinha com novo gradiente + leve glow -->
+        <div class="mt-4 mx-auto h-1 w-28 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-600 shadow-[0_0_18px_rgba(16,185,129,0.45)]"></div>
+        <p class="mt-4 text-slate-600">Soluções completas para aceitar e otimizar seus pagamentos.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <article class="group relative p-8 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm
+                        shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
+                        hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
+                        hover:border-emerald-300/60
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+                aria-label="Cartões de Crédito/Débito">
+            <!-- overlay de hover MAIS IMPACTANTE (emerald/cyan/indigo) -->
+            <div aria-hidden="true"
+                class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
+                        bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
+            <div class="relative z-10">
+            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+                        bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
+                        group-hover:scale-105 transition-transform">
+                <img src="assets/servicos/cartão.png" alt="Cartões" class="w-10 h-10 object-contain" />
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-3">Cartões de Crédito/Débito</h3>
+            <p class="text-slate-600">Aceite todos os principais cartões com as menores taxas do mercado.</p>
+            </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group relative p-8 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm
+                        shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
+                        hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
+                        hover:border-emerald-300/60
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+                aria-label="PIX">
+            <div aria-hidden="true"
+                class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
+                        bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
+            <div class="relative z-10">
+            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+                        bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
+                        group-hover:scale-105 transition-transform">
+                <img src="assets/servicos/pix.png" alt="PIX" class="w-8 h-8 object-contain" />
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-3">PIX</h3>
+            <p class="text-slate-600">Receba pagamentos instantâneos via PIX 24 horas por dia.</p>
+            </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group relative p-8 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm
+                        shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
+                        hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
+                        hover:border-emerald-300/60
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+                aria-label="Transferência Bancária">
+            <div aria-hidden="true"
+                class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
+                        bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
+            <div class="relative z-10">
+            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+                        bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
+                        group-hover:scale-105 transition-transform">
+                <img src="assets/servicos/transferencia.png" alt="Transferência" class="w-10 h-10 object-contain" />
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-3">Transferência Bancária</h3>
+            <p class="text-slate-600">Integração com todos os principais bancos do país.</p>
+            </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="group relative p-8 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm
+                        shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
+                        hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
+                        hover:border-emerald-300/60
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+                aria-label="Dashboard Analytics">
+            <div aria-hidden="true"
+                class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
+                        bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
+            <div class="relative z-10">
+            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+                        bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
+                        group-hover:scale-105 transition-transform">
+                <img src="assets/servicos/dashboard.png" alt="Dashboard" class="w-10 h-10 object-contain" />
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-3">Dashboard Analytics</h3>
+            <p class="text-slate-600">Acompanhe suas vendas e transações em tempo real.</p>
+            </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="group relative p-8 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm
+                        shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
+                        hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
+                        hover:border-emerald-300/60
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+                aria-label="API de Integração">
+            <div aria-hidden="true"
+                class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
+                        bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
+            <div class="relative z-10">
+            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+                        bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
+                        group-hover:scale-105 transition-transform">
+                <img src="assets/servicos/API.png" alt="API" class="w-10 h-10 object-contain" />
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-3">API de Integração</h3>
+            <p class="text-slate-600">Integre facilmente com seu sistema existente.</p>
+            </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="group relative p-8 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm
+                        shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
+                        hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
+                        hover:border-emerald-300/60
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+                aria-label="Antifraude">
+            <div aria-hidden="true"
+                class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
+                        bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
+            <div class="relative z-10">
+            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+                        bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
+                        group-hover:scale-105 transition-transform">
+                <img src="assets/servicos/antifraude.png" alt="Antifraude" class="w-10 h-10 object-contain" />
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-3">Antifraude</h3>
+            <p class="text-slate-600">Proteção avançada contra fraudes e chargebacks.</p>
+            </div>
+        </article>
+        </div>
+    </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produtos" class="relative py-24 md:py-28 overflow-hidden bg-slate-950">
+  <!-- AURORAS -->
+  <div aria-hidden="true" class="pointer-events-none absolute -top-40 -left-24 h-[32rem] w-[32rem] rounded-full bg-cyan-400/20 blur-3xl"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-44 -right-20 h-[34rem] w-[34rem] rounded-full bg-emerald-400/20 blur-3xl"></div>
+
+  <!-- LINHAS DIGITAIS -->
+  <div aria-hidden="true"
+       class="pointer-events-none absolute inset-0 opacity-35
+              [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]
+              bg-[repeating-linear-gradient(115deg,rgba(0,0,0,0)_0_60px,rgba(16,185,129,0.12)_60px_61px,rgba(59,130,246,0.12)_61px_62px,rgba(0,0,0,0)_62px_122px)]
+              animate-[bgslide_22s_linear_infinite]"></div>
+
+  <!-- BOLHAS (geradas via JS) -->
+  <div id="prod-bubbles" aria-hidden="true" class="pointer-events-none absolute inset-0 mix-blend-screen"></div>
+
+  <!-- LINHA PRISMÁTICA -->
+  <div class="absolute bottom-0 inset-x-0 h-[2px]">
+    <div class="h-full w-full bg-gradient-to-r from-liberpay-green via-cyan-400 to-liberpay-blue"></div>
+  </div>
+
+  <div class="container relative z-10 mx-auto px-6">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-emerald-300 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+        Nossos Produtos
+      </h2>
+      <p class="mt-3 text-slate-300">Tecnologia, desempenho e segurança para o seu negócio.</p>
+    </div>
+
+    <!-- GRID -->
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+
+      <!-- S920 -->
+      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-emerald-400/30 transition-all" data-tilt-max="8" data-reveal>
+        <div class="relative">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+            <img src="assets/produtos/S920.png" alt="POS PAX S920" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(16,185,129,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-semibold text-white">PAX S920</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Sistema Prolin</li>
+            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Bateria até 6h</li>
+            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Touch 3.6″</li>
+            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Wi‑Fi / 4G / 3G / 2G</li>
+            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>NFC • Chip • Tarja</li>
+            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão 40mm</li>
+          </ul>
+          <a href="#contato" aria-label="Quero este: PAX S920"
+             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#10b981] [--g2:#06b6d4] [--g3:#3b82f6]
+                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                    shadow-[0_12px_40px_-10px_rgba(6,182,212,0.6)]
+                    relative overflow-hidden">
+            Quero Este
+            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+          </a>
+        </div>
+      </article>
+
+      <!-- A920 -->
+      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-cyan-400/30 transition-all" data-tilt-max="8" data-reveal>
+        <div class="relative">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+            <img src="assets/produtos/PAX A920.png" alt="POS PAX A920" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(6,182,212,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-semibold text-white">PAX A920</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Android 7.1</li>
+            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 5.5″ HD</li>
+            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Câmera 5MP + frontal 0.3MP</li>
+            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>4G • Wi‑Fi 2.4GHz • BT 5.0</li>
+            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Bateria 5150mAh</li>
+            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão 40 linhas/s</li>
+          </ul>
+          <a href="#contato" aria-label="Quero este: PAX A920"
+             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#06b6d4] [--g2:#3b82f6] [--g3:#10b981]
+                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                    shadow-[0_12px_40px_-10px_rgba(6,182,212,0.6)]
+                    relative overflow-hidden">
+            Quero Este
+            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+          </a>
+        </div>
+      </article>
+
+      <!-- TECTOY P2 -->
+      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-indigo-400/30 transition-all" data-tilt-max="8" data-reveal>
+        <div class="relative">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+            <img src="assets/produtos/tectoy.png" alt="POS TECTOY P2" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(59,130,246,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-semibold text-white">TECTOY P2</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 5.5″ FHD • design fino</li>
+            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Traseira antiderrapante</li>
+            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Câmera 5MP (flash + AF)</li>
+            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão até 70mm/s</li>
+            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Leitor Biométrico Integrado (Opcional)</li>
+            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dois Cartões SIM - Maior Conectividade</li>
+          </ul>
+          <a href="#contato" aria-label="Quero este: TECTOY P2"
+             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#3b82f6] [--g2:#06b6d4] [--g3:#10b981]
+                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                    shadow-[0_12px_40px_-10px_rgba(59,130,246,0.55)]
+                    relative overflow-hidden">
+            Quero Este
+            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+          </a>
+        </div>
+      </article>
+
+      <!-- TEF -->
+      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-teal-400/30 transition-all" data-tilt-max="8" data-reveal>
+        <div class="relative">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+            <img src="assets/produtos/TEF.png" alt="TEF LibberPay" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(20,184,166,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-semibold text-white">TEF</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Multi‑adquirência</li>
+            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Integra com sua automação</li>
+            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Qualquer bandeira e vouchers</li>
+            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Gestão otimizada e segura</li>
+            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Aumento da Lucratividade</li>
+            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Operação Facilitada</li>
+          </ul>
+          <a href="#contato" aria-label="Quero este: TEF"
+             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#14b8a6] [--g2:#06b6d4] [--g3:#10b981]
+                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                    shadow-[0_12px_40px_-10px_rgba(20,184,166,0.6)]
+                    relative overflow-hidden">
+            Quero Este
+            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <style>
+    @keyframes bgslide { from { background-position: 0 0 } to { background-position: 200% 0 } }
+    @keyframes gradientShift { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }
+    @keyframes shine { 0% { transform: translateX(-130%) } 100% { transform: translateX(130%) } }
+  </style>
+</section>
+
+<!-- Modal de produto -->
+<div id="product-modal" class="fixed inset-0 z-[60] hidden">
+  <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+  <div class="relative mx-auto my-8 w-[92%] max-w-3xl rounded-2xl border border-white/10 bg-slate-900 p-6 text-slate-200 shadow-2xl">
+    <button type="button" data-close-modal
+            class="absolute right-4 top-4 rounded-md bg-white/10 px-2.5 py-1 text-xs font-semibold hover:bg-white/20">
+      Fechar
+    </button>
+    <div id="modal-body" class="prose prose-invert max-w-none"></div>
+  </div>
+</div>
+
+    <!-- GerenPIX Section -->
+    <section class="py-20 bg-gradient-to-br from-purple-600 via-blue-600 to-teal-500 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full animate-pulse"></div>
+            <div class="absolute top-32 right-20 w-16 h-16 bg-white rounded-full animate-pulse delay-1000"></div>
+            <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-white rounded-full animate-pulse delay-2000"></div>
+            <div class="absolute bottom-32 right-1/3 w-24 h-24 bg-white rounded-full animate-pulse delay-500"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- New Badge -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center bg-yellow-400 text-black px-8 py-3 rounded-full font-bold text-sm animate-bounce">
+                    <span class="mr-2">🚀</span>
+                    NOVIDADE - LANÇAMENTO EXCLUSIVO
+                </div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div class="text-white">
+                    <h2 class="text-5xl font-bold mb-6 leading-tight">
+                        <span class="text-yellow-300">GerenPIX</span>
+                        <br>
+                        Revolução em Boletos
+                    </h2>
+                    <p class="text-xl mb-8 opacity-90 leading-relaxed">
+                        O novo software da LibberPay que vai transformar a forma como você gera e gerencia boletos. 
+                        Personalize com sua marca, integre PIX automaticamente e acompanhe tudo em tempo real!
+                    </p>
+                    
+                    <!-- Features List -->
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg">Boletos personalizados com sua marca</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg">QR Code PIX integrado automaticamente</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg">Acompanhamento em tempo real</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg">Avisos automáticos de vencimento</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg">100% de segurança garantida</span>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="https://www.instagram.com/libberpay?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-4 rounded-lg font-bold text-lg transition-colors duration-300 shadow-lg" target="_blank" rel="noopener noreferrer">
+                            🎯 Saiba mais
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Visual/Mockup -->
+                <div class="relative">
+                    <!-- Main Device -->
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg p-6 mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-white font-bold text-xl">GerenPIX</h3>
+                                <div class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-bold">NOVO</div>
+                            </div>
+                            <div class="bg-white/20 rounded-lg p-4">
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-lg"></div>
+                                    <div>
+                                        <div class="h-2 bg-white/60 rounded w-24 mb-1"></div>
+                                        <div class="h-2 bg-white/40 rounded w-16"></div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-white/30 rounded-lg p-3">
+                                        <div class="h-2 bg-white/60 rounded mb-2"></div>
+                                        <div class="h-4 bg-white/80 rounded"></div>
+                                    </div>
+                                    <div class="bg-white/30 rounded-lg p-3">
+                                        <div class="h-2 bg-white/60 rounded mb-2"></div>
+                                        <div class="h-4 bg-white/80 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- QR Code Mockup -->
+                        <div class="text-center">
+                            <div class="inline-block bg-gray-100 p-4 rounded-lg mb-4">
+                                <div class="w-24 h-24 bg-black rounded-lg flex items-center justify-center">
+                                    <img src="assets/servicos/pix.png" alt="PIX" class="w-14 h-18 object-contain" />
+                                </div>
+                            </div>
+                            <p class="text-black-600 font-semibold">PIX Integrado</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-4 -right-4 bg-green-400 text-black px-4 py-2 rounded-full font-bold text-sm animate-bounce">
+                        Rápido & Prático!
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 bg-yellow-400 text-black px-4 py-2 rounded-full font-bold text-sm animate-pulse">
+                        100% Seguro
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Stats -->
+            <div class="mt-16 text-center">
+                <div class="grid md:grid-cols-3 gap-8 text-white">
+                    <div>
+                        <div class="text-3xl font-bold mb-2">5 min</div>
+                        <div class="text-lg opacity-90">Para configurar tudo</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold mb-2">24/7</div>
+                        <div class="text-lg opacity-90">Monitoramento automático</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold mb-2">99.9%</div>
+                        <div class="text-lg opacity-90">Taxa de utilização</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-black mb-4">O que nossos clientes dizem</h2>
+                <div class="w-24 h-1 bg-liberpay-green mx-auto mb-8"></div>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+                    Veja os depoimentos de empresas que transformaram seus negócios com a Liberpay
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-8 rounded-xl border-l-4 border-liberpay-green">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">
+                        "A LibberPay revolucionou nosso sistema de pagamentos. Reduzimos as taxas em 40% e aumentamos nossa conversão significativamente. O suporte é excepcional!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-liberpay-green rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">MS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Silas Zeferino</h4>
+                            <p class="text-gray-600 text-sm">CEO - TechStore Brasil</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-8 rounded-xl border-l-4 border-liberpay-blue">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">
+                        "Implementamos a API da LibberPay em apenas 2 dias. A documentação é clara e o time técnico nos deu todo o suporte necessário. Recomendo!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-liberpay-blue rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">JC</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Leandro</h4>
+                            <p class="text-gray-600 text-sm">CTO - InnovaShop</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-8 rounded-xl border-l-4 border-liberpay-green">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">
+                        "Desde que migramos para a LibberPay, nossos clientes elogiam a rapidez dos pagamentos via PIX. O dashboard analytics nos ajuda muito na gestão."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-liberpay-green to-liberpay-blue rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">AF</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">André Gutierrez</h4>
+                            <p class="text-gray-600 text-sm">Diretor Financeiro - MegaVendas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div class="mt-16 text-center">
+                <div class="bg-gradient-to-r from-liberpay-green to-liberpay-blue p-8 rounded-xl text-white">
+                    <h3 class="text-2xl font-bold mb-4">Certificações e Segurança</h3>
+                    <div class="grid md:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+                                <span class="text-2xl">🔒</span>
+                            </div>
+                            <p class="font-semibold">SSL 256-bit</p>
+                            <p class="text-sm opacity-90">Criptografia Avançada</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+                                <span class="text-2xl">🏛️</span>
+                            </div>
+                            <p class="font-semibold">Banco Central</p>
+                            <p class="text-sm opacity-90">Regulamentado</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+                                <span class="text-2xl">🛡️</span>
+                            </div>
+                            <p class="font-semibold">PCI DSS</p>
+                            <p class="text-sm opacity-90">Certificado</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+                                <span class="text-2xl">⚡</span>
+                            </div>
+                            <p class="font-semibold">99.9% Uptime</p>
+                            <p class="text-sm opacity-90">Disponibilidade</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+        <section id="numeros" class="relative overflow-hidden py-24 bg-slate-950 text-slate-100">
+        <!-- auroras/background -->
+        <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 h-[26rem] w-[26rem] rounded-full bg-emerald-500/20 blur-3xl"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -bottom-28 -right-16 h-[28rem] w-[28rem] rounded-full bg-cyan-500/20 blur-3xl"></div>
+
+        <div class="container relative z-10 mx-auto px-6">
+            <div class="text-center mb-14">
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">
+                Números que
+                <span class="bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+                Impressionam
+                </span>
+            </h2>
+            <p class="mt-3 text-slate-300">Veja o crescimento da LibberPay e a confiança do mercado</p>
+            <!-- barrinha brilhante -->
+            <div class="mt-6 mx-auto h-1 w-32 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-600 shadow-[0_0_20px_rgba(34,197,94,0.45)]"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Stat -->
+            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
+                <article
+                class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+                        shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
+                        hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
+                        transition-all duration-300 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+                >
+                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+                <div class="text-4xl md:text-5xl font-extrabold tracking-tight font-mono tabular-nums
+                            bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent
+                            drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+                    <span data-count-to="15000" data-suffix="+" data-duration="1400">0</span>
+                </div>
+                <p class="mt-2 text-slate-300">Estabelecimentos Parceiros</p>
+                </article>
+            </div>
+
+            <!-- Stat -->
+            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
+                <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+                                shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
+                                hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
+                                transition-all duration-300 transform-gpu will-change-transform"
+                        data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
+                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+                <div class="text-4xl md:text-5xl font-extrabold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+                    <span data-count-to="50000" data-suffix="+" data-duration="1400">0</span>
+                </div>
+                <p class="mt-2 text-slate-300">Licenciados Ativos</p>
+                </article>
+            </div>
+
+            <!-- Stat -->
+            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
+                <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+                                shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
+                                hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
+                                transition-all duration-300 transform-gpu will-change-transform"
+                        data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
+                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+                <div class="text-4xl md:text-5xl font-extrabold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+                    <span data-count-to="2.5" data-decimals="1" data-prefix="R$ " data-suffix="B" data-duration="1600">0</span>
+                </div>
+                <p class="mt-2 text-slate-300">Processados Mensalmente</p>
+                </article>
+            </div>
+
+            <!-- Stat -->
+            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
+                <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+                                shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
+                                hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
+                                transition-all duration-300 transform-gpu will-change-transform"
+                        data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
+                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+                <div class="text-4xl md:text-5xl font-extrabold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+                    <span data-count-to="99.9" data-decimals="1" data-suffix="%" data-duration="1500">0</span>
+                </div>
+                <p class="mt-2 text-slate-300">Uptime Garantido</p>
+                </article>
+            </div>
+            </div>
+        </div>
+        </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-black mb-4">Entre em Contato</h2>
+                <div class="w-24 h-1 bg-liberpay-green mx-auto mb-8"></div>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+                    Estamos prontos para ajudar você a revolucionar seus pagamentos. Entre em contato conosco!
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-2xl font-bold text-black mb-6">Envie sua Mensagem</h3>
+
+                    <form id="contatoForm"class="space-y-6">
+                        <div>
+                        <label class="block text-black font-semibold mb-2">Nome Completo *</label>
+                        <input type="text" name="nome" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-liberpay-green focus:outline-none transition-colors duration-300" placeholder="Seu nome completo" />
+                        </div>
+                        
+                        <div>
+                        <label class="block text-black font-semibold mb-2">E-mail *</label>
+                        <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-liberpay-green focus:outline-none transition-colors duration-300" placeholder="seu@email.com" />
+                        </div>
+                        
+                        <div>
+                        <label class="block text-black font-semibold mb-2">Telefone *</label>
+                        <input type="tel" name="telefone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-liberpay-green focus:outline-none transition-colors duration-300" placeholder="(11) 99999-9999" />
+                        </div>
+                        
+                        <div>
+                        <label class="block text-black font-semibold mb-2">Empresa</label>
+                        <input type="text" name="empresa" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-liberpay-green focus:outline-none transition-colors duration-300" placeholder="Nome da sua empresa" />
+                        </div>
+                        
+                        <div>
+                        <label class="block text-black font-semibold mb-2">Mensagem *</label>
+                        <textarea name="mensagem" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-liberpay-green focus:outline-none transition-colors duration-300 resize-none" placeholder="Como podemos ajudar você?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-liberpay-green hover:bg-liberpay-dark-green text-white py-4 rounded-lg font-semibold text-lg transition-colors duration-300">
+                        Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-black mb-6">Nossos Contatos</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-liberpay-green rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-black mb-1">E-mail</h4>
+                                    <p class="text-gray-600">contato@liberpay.com.br</p>
+                                    <p class="text-gray-600">suporte@liberpay.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-liberpay-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-black mb-1">Telefone</h4>
+                                    <p class="text-gray-600">(11) 3000-1234</p>
+                                    <p class="text-gray-600">(11) 99999-8888</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-liberpay-green to-liberpay-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-black mb-1">Horário de Atendimento</h4>
+                                    <p class="text-gray-600">Segunda a Sexta: 8h às 18h</p>
+                                    <p class="text-gray-600">Sábado: 9h às 14h</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-liberpay-green to-liberpay-blue p-8 rounded-xl text-white">
+                        <h4 class="text-xl font-bold mb-4">Atendimento Especializado</h4>
+                        <p class="mb-6">Nossa equipe está pronta para oferecer a melhor solução para o seu negócio.</p>
+                        <div class="flex items-center space-x-2 mb-6">
+                            <span class="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></span>
+                            <span class="text-sm">Online agora</span>
+                        </div>
+                        
+                        <div class="border-t border-white/20 pt-6">
+                            <h5 class="text-lg font-semibold mb-3">Baixe nosso App</h5>
+                            <p class="text-sm mb-4 opacity-90">Gerencie seus pagamentos direto do seu celular</p>
+                            <a href="https://play.google.com/store/apps/details?id=br.com.libberpay.digital_account&pcampaignid=web_share" target="_blank" class="inline-flex items-center bg-white text-liberpay-green hover:bg-gray-100 px-4 py-3 rounded-lg font-semibold transition-colors duration-300" rel="noopener noreferrer">
+                                <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                                </svg>
+                                Baixar App
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-liberpay-green to-liberpay-blue">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Pronto para Começar?</h2>
+            <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+                Junte-se a milhares de empresas que já confiam na LibberPay para processar seus pagamentos.
+            </p>
+            <a href="cadastro.html" class="bg-white text-liberpay-green hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg transition-colors duration-300">
+                Abra sua Conta Gratuita
+            </a>
+        </div>
+    </section>
+
+<!-- Botão WhatsApp com a IMAGEM pulsante -->
+<div class="fixed bottom-6 left-6 z-50">
+  <a href="https://wa.me/5511940883456"
+     target="_blank"
+     aria-label="Falar no WhatsApp"
+     class="group relative flex items-center z-50
+            rounded-full bg-green-500/90 text-white font-medium shadow-xl
+            hover:bg-green-500 transition-colors duration-300">
+
+    <!-- Círculo container (fundo fixo) -->
+    <div class="flex items-center justify-center w-16 h-16 rounded-full
+                bg-green-600 group-hover:bg-green-700 transition-colors duration-300">
+      
+      <!-- IMAGEM maior e pulsante -->
+      <img src="assets/servicos/logo whats.png" alt="WhatsApp"
+           class="w-12 h-12 object-contain pointer-events-none select-none animate-pulse" />
+      
+    </div>
+
+    <!-- Label com expansão -->
+    <span class="block max-w-0 opacity-0 overflow-hidden whitespace-nowrap
+                 group-hover:max-w-[180px] group-hover:opacity-100
+                 transition-all duration-500 ease-out
+                 text-base pl-0 group-hover:pl-3 pr-4">
+      Atendimento Online
+    </span>
+  </a>
+</div>
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="assets/logo/Captura de tela 2025-07-29 110441.png" alt="LibberPay Logo" class="w-12 h-12 object-contain">
+                        <h3 class="text-xl font-bold">LibberPay</h3>
+                    </div>
+                    <p class="text-gray-400">Revolucionando os meios de pagamento no Brasil.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Produtos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Gateway de Pagamento</a></li>
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">API</a></li>
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Carreiras</a></li>
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Suporte</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Contato</a></li>
+                        <li><a href="#" class="hover:text-liberpay-green transition-colors">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 LibberPay. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Seu JS externo -->
+    <script src="js/site.js"></script>
+
+</body>
+</html>
