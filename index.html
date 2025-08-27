@@ -52,9 +52,9 @@
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
                     <div class="relative">
-                        <img src="assets/logo/Captura de tela 2025-08-24 011938.png"
+                        <img src="assets/logo/Logo oficial.png"
                             alt="Logo Libberpay"
-                            class="h-[75px] w-auto object-contain block" />
+                            class="h-[40px] sm:h-[50px] md:h-[75px] w-auto object-contain block" />
 
                         <!-- Linha animada sob o logo -->
                         <div class="absolute left-0 right-0 bottom-[8px] pointer-events-none flex">
@@ -87,8 +87,8 @@
                                 transition-all duration-300"></span>
                 </nav>
 
-                 <!-- CTAs -->
-                <div class="flex gap-3">
+                <!-- CTAs -->
+                <div class="hidden sm:flex gap-3">
                     <a href="#contato"
                     class="px-5 py-2 rounded-lg bg-gradient-to-r from-green-500 to-cyan-500 text-white
                             shadow-[0_6px_20px_-6px_rgba(6,182,212,0.55)]
@@ -98,28 +98,28 @@
                     </a>
                     <a href="login.html"
                     class="px-5 py-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white
-                              hover:bg-white/20 transition-all font-semibold shadow-lg">
+          hover:bg-white/20 transition-all font-semibold shadow-lg">
                         Acessar Conta
                     </a>
                     <a href="https://vendas.libberpay.confrapag.com.br/"
                     class="px-5 py-2 rounded-lg text-white border-2 border-cyan-400 
-                              bg-gradient-to-r from-cyan-400/20 to-blue-500/20
-                              hover:from-cyan-400 hover:to-blue-500 
-                              hover:text-white hover:shadow-[0_0_20px_4px_rgba(6,182,212,0.6),0_0_25px_6px_rgba(59,130,246,0.6)]
-                              transition-all duration-300 ease-in-out font-semibold">
+          bg-gradient-to-r from-cyan-400/20 to-blue-500/20
+          hover:from-cyan-400 hover:to-blue-500 
+          hover:text-white hover:shadow-[0_0_20px_4px_rgba(6,182,212,0.6),0_0_25px_6px_rgba(59,130,246,0.6)]
+          transition-all duration-300 ease-in-out font-semibold">
                         Área do Licenciado
                     </a>
                 </div>
                 <!-- Hambúrguer Mobile (☰) -->
                     <div class="flex md:hidden">
-                      <button id="menu-btn" class="p-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-md">
+                    <button id="menu-btn" class="p-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-md">
                         ☰
-                      </button>
+                    </button>
                     </div>
-                  </div>
-                
-                  <!-- Menu Mobile -->
-                  <div id="mobile-menu" class="hidden flex-col gap-4 mt-4 bg-black/80 text-center p-4 rounded-lg md:hidden">
+                </div>
+
+                <!-- Menu Mobile -->
+                <div id="mobile-menu" class="hidden flex-col gap-4 mt-4 bg-black/80 text-center p-4 rounded-lg md:hidden">
                     <a href="#home" class="block text-white hover:text-cyan-400 transition">Início</a>
                     <a href="#sobre" class="block text-white hover:text-cyan-400 transition">Sobre</a>
                     <a href="#servicos" class="block text-white hover:text-cyan-400 transition">Serviços</a>
@@ -128,17 +128,17 @@
                     <hr class="border-slate-600/40">
                     <a href="#contato" class="block text-cyan-400 font-semibold">Pedir Agora</a>
                     <a href="login.html" class="block text-cyan-400 font-semibold">Acessar Conta</a>
-                    <a href="https://vendas.libberpay.confrapag.com.br/" class="block text-cyan-400 font-semibold">Gestor de Vendas</a>
-                  </div>
+                    <a href="gestor.html" class="block text-cyan-400 font-semibold">Área do Licenciado</a>
                 </div>
-                
+                </div>
+
                 <script>
-                  const btn = document.getElementById("menu-btn");
-                  const menu = document.getElementById("mobile-menu");
-                  btn.addEventListener("click", () => {
+                const btn = document.getElementById("menu-btn");
+                const menu = document.getElementById("mobile-menu");
+                btn.addEventListener("click", () => {
                     menu.classList.toggle("hidden");
                     menu.classList.toggle("flex");
-                  });
+                });
                 </script>
             </div>
         </div>
