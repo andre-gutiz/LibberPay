@@ -18,19 +18,52 @@
             </div>
 
             <a href="site.html" class="absolute top-6 left-6 flex items-center space-x-3">
-                <!-- Logo circular maior -->
-                <img src="assets/logo/Captura de tela 2025-07-29 110441.png" 
-                    alt="Logo Libberpay" 
-                    class="w-16 h-16 rounded-full border-4 border-green-400 shadow-xl">
+                <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <img src="assets/logo/Captura de tela 2025-08-24 011938.png"
+                            alt="Logo Libberpay"
+                            class="h-[75px] w-auto object-contain block" />
 
-                <!-- Texto Libberpay maior, quadrado e neon -->
-                <span class="text-green-600 text-4xl font-extrabold tracking-tight font-sans uppercase drop-shadow-lg">
-                    Libberpay
-                </span>
+                        <!-- Linha animada sob o logo -->
+                        <div class="absolute left-0 right-0 bottom-[8px] pointer-events-none flex">
+                            <div class="relative" style="left:24%; width:64%;">
+                                <div class="relative h-[3px] rounded-full overflow-hidden bg-slate-200/14">
+                                    <div class="absolute inset-0 bg-gradient-to-r 
+                                                from-transparent via-green-400/90 to-transparent
+                                                animate-[flowRightBright_3s_linear_infinite]"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-r 
+                                                from-transparent via-cyan-400/90 to-transparent
+                                                animate-[flowLeftBright_3.6s_linear_infinite]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </a>
-            <h1 class="text-4xl font-bold text-white mb-2">Bem-vindo de volta!</h1>
-            <p class="text-white/80 text-lg">Faça login para continuar</p>
+
+            <!-- Textos centralizados exatamente abaixo do ícone -->
+            <div class="text-center ml-12">
+                <h1 class="text-4xl font-bold text-white mb-2">Bem-vindo de volta!</h1>
+                <p class="text-white/80 text-lg">Faça login para continuar</p>
+            </div>
         </div>
+
+        </div>
+        <!-- ESTILOS DAS ANIMAÇÕES -->
+        <style>
+            @keyframes flowRightBright {
+                0%   { transform: translateX(-120%); opacity: .8; }
+                50%  { transform: translateX(0); opacity: 1; }
+                100% { transform: translateX(120%); opacity: .8; }
+            }
+            @keyframes flowLeftBright {
+                0%   { transform: translateX(120%); opacity: .8; }
+                50%  { transform: translateX(0); opacity: 1; }
+                100% { transform: translateX(-120%); opacity: .8; }
+            }
+        </style>
         
         <!-- Form Container -->
         <div class="glass-effect rounded-2xl shadow-2xl p-8 fade-in bg-white glass-effect">
@@ -169,3 +202,4 @@
     <script src="js/form_login.js"></script>
 </body>
 </html>
+
