@@ -304,3 +304,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavUnderline();
   initScrollReveal();
 });
+
+document.getElementById('site-logo').addEventListener('click', function (e) {
+  e.preventDefault();
+  // Recarrega a página — comportamento idêntico a entrar pela primeira vez
+  location.reload();
+});
