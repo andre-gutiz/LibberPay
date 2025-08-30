@@ -39,9 +39,6 @@
             <!-- Gradiente base -->
             <div class="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#0a2640] to-[#022c22] opacity-95"></div>
             
-            <!-- UMA aurora suave -->
-            <div class="absolute left-1/3 top-0 w-[35rem] h-[35rem] rounded-full bg-cyan-500/15 blur-[100px]"></div>
-            
             <!-- BOLHAS FLUTUANTES RANDOMICAS (mesmo sistema da seção produtos) -->
             <div id="header-bubbles" class="absolute inset-0 pointer-events-none"></div>
         </div>
@@ -54,7 +51,7 @@
                     <div class="relative">
                         <img src="assets/logo/Logo Oficial.png"
                             alt="Logo Libberpay"
-                            class="h-[40px] sm:h-[50px] md:h-[75px] w-auto object-contain block" />
+                            class="h-[40px] sm:h-[50px] md:h-[75px] w-auto object-contain block reveal-left" />
 
                         <!-- Linha animada sob o logo -->
                         <div class="absolute left-0 right-0 bottom-[8px] pointer-events-none flex">
@@ -93,12 +90,12 @@
                     class="px-5 py-2 rounded-lg bg-gradient-to-r from-green-500 to-cyan-500 text-white
                             shadow-[0_6px_20px_-6px_rgba(6,182,212,0.55)]
                             hover:shadow-[0_8px_30px_-8px_rgba(16,185,129,0.55)]
-                            transition-all font-semibold">
+                            transition-all font-semibold reveal-left">
                         Pedir Agora
                     </a>
                     <a href="login.html"
                     class="px-5 py-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white
-          hover:bg-white/20 transition-all font-semibold shadow-lg">
+          hover:bg-white/20 transition-all font-semibold shadow-lg reveal-up-delay">
                         Acessar Conta
                     </a>
                     <a href="https://vendas.libberpay.confrapag.com.br/"
@@ -106,7 +103,7 @@
           bg-gradient-to-r from-cyan-400/20 to-blue-500/20
           hover:from-cyan-400 hover:to-blue-500 
           hover:text-white hover:shadow-[0_0_20px_4px_rgba(6,182,212,0.6),0_0_25px_6px_rgba(59,130,246,0.6)]
-          transition-all duration-300 ease-in-out font-semibold">
+          transition-all duration-300 ease-in-out font-semibold reveal-right">
                         Área do Licenciado
                     </a>
                 </div>
@@ -158,88 +155,88 @@
         </style>
     </header>
 
-    <!-- Hero Section -->
+        <!-- Hero Section -->
     <div class="h-12 md:h-16 lg:h-24"></div>
-    <section id="home" class="bg-gradient-to-r from-white to-gray-50 relative z-10">
-        <div class="container mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
-            <!-- Left: Text Content -->
-            <div>
-                <h2 class="text-5xl lg:text-5xl font-bold leading-tight mb-6">
-                    Revolucione seus<a> pagamentos <a> com a <span class="text-liberpay-green">LibberPay</span>
-                </h2>
-                <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-                    A LibberPay oferece soluções completas em meios de pagamento para empresas de todos os tamanhos. Simplifique suas transações e acelere seu crescimento.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#produtos" class="px-6 py-3 rounded-md text-white font-medium
-            bg-gradient-to-r from-emerald-500 to-green-600
-            border border-white/10 shadow-lg shadow-emerald-400/20
-            hover:shadow-emerald-300/30 hover:scale-105
-            transition duration-300 ease-out">
-                        Nossos Produtos
-                    </a>
-                    <a href="https://www.instagram.com/libberpay?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="px-6 py-3 rounded-md text-white font-medium 
-          bg-gradient-to-r from-[#050d17] via-[#081427] to-[#06101b]
-          border border-white/10 shadow-lg shadow-cyan-700/20
-          hover:shadow-cyan-400/20 hover:scale-105
-          transition duration-300 ease-out" target="_blank" rel="noopener noreferrer">
-                        Saiba Mais
-                    </a>
+        <section id="home" class="bg-gradient-to-r from-white to-gray-50 relative z-10">
+            <div class="container mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text Content -->
+                <div class="reveal-left">
+                    <h2 class="text-5xl lg:text-5xl font-bold leading-tight mb-6">
+                        Revolucione seus<a> pagamentos <a> com a <span class="text-liberpay-green">LibberPay</span>
+                    </h2>
+                    <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                        A LibberPay oferece soluções completas em meios de pagamento para empresas de todos os tamanhos. Simplifique suas transações e acelere seu crescimento.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#produtos" class="px-6 py-3 rounded-md text-white font-medium
+                bg-gradient-to-r from-emerald-500 to-green-600
+                border border-white/10 shadow-lg shadow-emerald-400/20
+                hover:shadow-emerald-300/30 hover:scale-105
+                transition duration-300 ease-out">
+                            Nossos Produtos
+                        </a>
+                        <a href="https://www.instagram.com/libberpay?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="px-6 py-3 rounded-md text-white font-medium 
+            bg-gradient-to-r from-[#050d17] via-[#081427] to-[#06101b]
+            border border-white/10 shadow-lg shadow-cyan-700/20
+            hover:shadow-cyan-400/20 hover:scale-105
+            transition duration-300 ease-out" target="_blank" rel="noopener noreferrer">
+                            Saiba Mais
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Right: Image + Overlay Card -->
-            <div class="relative">
-                <img src="assets/servicos/4a692a12-3994-4f9d-b580-48075aea6565.webp" alt="Pessoa usando celular para pagamento" class="w-full h-[420px] object-cover rounded-2xl shadow-2xl"/>
-                <!-- overlay card -->
-                <div class="absolute left-6 bottom-8 bg-white/60 backdrop-blur-sm rounded-2xl p-5 w-11/12 lg:w-9/12 shadow-lg border-t-4 border-liberpay-green">
-                    <div class="flex items-center gap-4">
-                        <img src="assets/servicos/pagamento seguro.png" alt="Pagamento Seguro" class="w-12 h-12 object-contain"/>
-                        <div>
-                            <div class="text-sm text-gray-500">Pagamentos</div>
-                            <div class="font-semibold">100% seguros e monitorados</div>
+                <!-- Right: Image + Overlay Card -->
+                <div class="relative reveal-right">
+                    <img src="assets/servicos/4a692a12-3994-4f9d-b580-48075aea6565.webp" alt="Pessoa usando celular para pagamento" class="w-full h-[420px] object-cover rounded-2xl shadow-2xl"/>
+                    <!-- overlay card -->
+                    <div class="absolute left-6 bottom-8 bg-white/60 backdrop-blur-sm rounded-2xl p-5 w-11/12 lg:w-9/12 shadow-lg border-t-4 border-liberpay-green reveal-up-delay">
+                        <div class="flex items-center gap-4">
+                            <img src="assets/servicos/pagamento seguro.png" alt="Pagamento Seguro" class="w-12 h-12 object-contain"/>
+                            <div>
+                                <div class="text-sm text-gray-500">Pagamentos</div>
+                                <div class="font-semibold">100% seguros e monitorados</div>
+                            </div>
+                            <a href="https://www.instagram.com/libberpay?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="ml-auto text-sm text-liberpay-blue font-semibold" target="_blank" rel="noopener noreferrer">Saiba mais →</a>
                         </div>
-                        <a href="https://www.instagram.com/libberpay?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="ml-auto text-sm text-liberpay-blue font-semibold" target="_blank" rel="noopener noreferrer">Saiba mais →</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- About Section - Sobra a Libberpay -->
-    <section id="sobre" class="relative py-24 overflow-hidden bg-gradient-to-br from-[#050d17] via-[#081427] to-[#06101b] text-white scroll-mt-100">
+        <section id="sobre" class="relative py-24 overflow-hidden bg-gradient-to-br from-[#050d17] via-[#081427] to-[#06101b] text-white scroll-mt-100">
         
         <!-- ANEL HOLOGRÁFICO GIRANDO -->
         <div aria-hidden="true"
-             class="pointer-events-none absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 h-[1100px] w-[1100px] rounded-full blur-3xl opacity-30
+            class="pointer-events-none absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 h-[1100px] w-[1100px] rounded-full blur-3xl opacity-30
                     animate-[spin_70s_linear_infinite]
                     bg-[conic-gradient(from_210deg_at_50%_50%,transparent_0_36%,rgba(0,123,255,0.42)_42%,transparent_52%,rgba(0,200,81,0.42)_60%,transparent_68%,rgba(0,123,255,0.3)_78%,transparent_100%)]"></div>
 
         <!-- AURORAS PULSANTES -->
         <div aria-hidden="true"
-             class="pointer-events-none absolute -top-48 -left-48 h-[620px] w-[620px] rounded-full blur-3xl opacity-50
+            class="pointer-events-none absolute -top-48 -left-48 h-[620px] w-[620px] rounded-full blur-3xl opacity-50
                     animate-[pulse_9s_ease-in-out_infinite]
                     bg-[radial-gradient(circle_at_center,_rgba(0,123,255,0.55),_transparent_60%)]"></div>
         <div aria-hidden="true"
-             class="pointer-events-none absolute -bottom-56 -right-48 h-[680px] w-[680px] rounded-full blur-3xl opacity-45
+            class="pointer-events-none absolute -bottom-56 -right-48 h-[680px] w-[680px] rounded-full blur-3xl opacity-45
                     animate-[pulse_11s_ease-in-out_infinite]
                     bg-[radial-gradient(circle_at_center,_rgba(0,200,81,0.5),_transparent_60%)]"></div>
 
         <!-- FEIXES DIAGONAIS -->
         <div aria-hidden="true"
-             class="pointer-events-none absolute left-[-25%] top-1/3 w-[150%] h-px rotate-[-12deg]
+            class="pointer-events-none absolute left-[-25%] top-1/3 w-[150%] h-px rotate-[-12deg]
                     bg-gradient-to-r from-transparent via-liberpay-green/80 to-transparent blur-[1px] opacity-70"></div>
         <div aria-hidden="true"
-             class="pointer-events-none absolute left-[-18%] top-2/3 w-[150%] h-[2px] rotate-[10deg]
+            class="pointer-events-none absolute left-[-18%] top-2/3 w-[150%] h-[2px] rotate-[10deg]
                     bg-gradient-to-r from-transparent via-liberpay-blue/80 to-transparent blur-[2px] opacity-60"></div>
 
         <!-- SATÉLITES ORBITANDO -->
         <div aria-hidden="true"
-             class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full animate-[spin_56s_linear_infinite]">
+            class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full animate-[spin_56s_linear_infinite]">
             <span class="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-liberpay-green shadow-[0_0_18px_rgba(0,200,81,.9)]"></span>
         </div>
         <div aria-hidden="true"
-             class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full animate-[spin_38s_linear_infinite]">
+            class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full animate-[spin_38s_linear_infinite]">
             <span class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-liberpay-blue shadow-[0_0_16px_rgba(0,123,255,.9)]"></span>
         </div>
 
@@ -249,7 +246,7 @@
         <span aria-hidden="true" class="pointer-events-none absolute left-[20%] bottom-[16%] w-2 h-2 rounded-full bg-white/50 blur-[1px] animate-[ping_12s_linear_infinite]"></span>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 reveal-up-delay">
                 <h2 class="text-4xl font-semibold mb-4 tracking-tight">Sobre a LibberPay</h2>
                 <div class="relative w-32 h-1 mx-auto mb-8 overflow-hidden rounded">
                     <div class="absolute inset-0 bg-gradient-to-r from-liberpay-green via-white/70 to-liberpay-blue"></div>
@@ -264,7 +261,8 @@
                 <!-- Card 1 -->
                 <div class="group relative overflow-hidden text-center p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur
                             transition-all duration-300 hover:-translate-y-1 hover:border-liberpay-green/60
-                            hover:shadow-[0_12px_40px_rgba(0,200,81,.14)]">
+                            hover:shadow-[0_12px_40px_rgba(0,200,81,.14)]
+                            reveal-left">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -280,7 +278,8 @@
                 <!-- Card 2 -->
                 <div class="group relative overflow-hidden text-center p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur
                             transition-all duration-300 hover:-translate-y-1 hover:border-liberpay-blue/60
-                            hover:shadow-[0_12px_40px_rgba(0,123,255,.14)]">
+                            hover:shadow-[0_12px_40px_rgba(0,123,255,.14)]
+                            reveal-up-delay">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -296,7 +295,8 @@
                 <!-- Card 3 -->
                 <div class="group relative overflow-hidden text-center p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur
                             transition-all duration-300 hover:-translate-y-1 hover:border-liberpay-green/60
-                            hover:shadow-[0_12px_40px_rgba(0,200,81,.14)]">
+                            hover:shadow-[0_12px_40px_rgba(0,200,81,.14)]
+                            reveal-right">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -313,7 +313,7 @@
 
         <!-- Bandeiras Section (dentro da mesma seção Sobre) -->
         <div class="h-12 md:h-16 lg:h-24"></div>
-        <div class="container mx-auto px-6 relative z-10">
+        <div class="container mx-auto px-6 relative z-10 reveal-up-delay">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-semibold mb-4 tracking-tight">Bandeiras Aceitas</h2>
                 <div class="relative w-32 h-1 mx-auto mb-8 overflow-hidden rounded">
@@ -326,10 +326,11 @@
 
             <!-- Grid de bandeiras -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
-                <!-- Visa -->
+                <!-- Cada bandeira pode ter a classe reveal-up-delay para animar -->
                 <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
                             transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,200,81,.12)]
-                            hover:border-liberpay-green/60">
+                            hover:border-liberpay-green/60
+                            reveal-up-delay">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -341,10 +342,12 @@
                     </div>
                 </div>
 
+                <!-- Repita para as outras bandeiras, adicionando a classe reveal-up-delay -->
                 <!-- Mastercard -->
                 <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
                             transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,123,255,.12)]
-                            hover:border-liberpay-blue/60">
+                            hover:border-liberpay-blue/60
+                            reveal-up-delay">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -359,7 +362,8 @@
                 <!-- Elo -->
                 <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
                             transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,200,81,.12)]
-                            hover:border-liberpay-green/60">
+                            hover:border-liberpay-green/60
+                            reveal-up-delay">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -374,7 +378,8 @@
                 <!-- Banco do Brasil -->
                 <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
                             transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,123,255,.12)]
-                            hover:border-liberpay-blue/60">
+                            hover:border-liberpay-blue/60
+                            reveal-up-delay">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -389,7 +394,8 @@
                 <!-- Bradesco -->
                 <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
                             transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,200,81,.12)]
-                            hover:border-liberpay-green/60">
+                            hover:border-liberpay-green/60
+                            reveal-up-delay">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -404,7 +410,8 @@
                 <!-- Maestro -->
                 <div class="group relative overflow-hidden p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur flex items-center justify-center
                             transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,123,255,.12)]
-                            hover:border-liberpay-blue/60">
+                            hover:border-liberpay-blue/60
+                            reveal-up-delay">
                     <div class="pointer-events-none absolute -left-16 top-0 h-full w-12 rotate-12 opacity-0
                                 bg-gradient-to-b from-transparent via-white/40 to-transparent
                                 transition-all duration-500 group-hover:opacity-40 group-hover:translate-x-[220%]"></div>
@@ -420,13 +427,13 @@
     </section>
 
     <!-- Services Section -->
-    <section id="servicos" class="relative overflow-hidden py-24 bg-slate-50">
+        <section id="servicos" class="relative overflow-hidden py-24 bg-slate-50">
     <!-- fundo digital suave -->
     <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-20 h-80 w-80 rounded-full bg-emerald-400/15 blur-3xl"></div>
     <div aria-hidden="true" class="pointer-events-none absolute -bottom-28 -right-16 h-96 w-96 rounded-full bg-cyan-400/15 blur-3xl"></div>
 
     <div class="container relative z-10 mx-auto px-6">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 reveal-right">
         <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">Nossos Serviços</h2>
         <!-- barrinha com novo gradiente + leve glow -->
         <div class="mt-4 mx-auto h-1 w-28 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-600 shadow-[0_0_18px_rgba(16,185,129,0.45)]"></div>
@@ -439,7 +446,8 @@
                         shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
                         hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
                         hover:border-emerald-300/60
-                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform
+                        reveal-up-delay"
                 data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
                 aria-label="Cartões de Crédito/Débito">
             <!-- overlay de hover MAIS IMPACTANTE (emerald/cyan/indigo) -->
@@ -462,14 +470,15 @@
                         shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
                         hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
                         hover:border-emerald-300/60
-                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform
+                        reveal-left"
                 data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
                 aria-label="PIX">
             <div aria-hidden="true"
                 class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
                         bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
             <div class="relative z-10">
-            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+            <div class="w-8 h-8 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
                         bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
                         group-hover:scale-105 transition-transform">
                 <img src="assets/servicos/pix.png" alt="PIX" class="w-8 h-8 object-contain" />
@@ -484,14 +493,15 @@
                         shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
                         hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
                         hover:border-emerald-300/60
-                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform
+                        reveal-right"
                 data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
                 aria-label="Transferência Bancária">
             <div aria-hidden="true"
                 class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
                         bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
             <div class="relative z-10">
-            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+            <div class="w-10 h-10 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
                         bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
                         group-hover:scale-105 transition-transform">
                 <img src="assets/servicos/transferencia.png" alt="Transferência" class="w-10 h-10 object-contain" />
@@ -506,14 +516,15 @@
                         shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
                         hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
                         hover:border-emerald-300/60
-                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform
+                        reveal-left"
                 data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
                 aria-label="Dashboard Analytics">
             <div aria-hidden="true"
                 class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
                         bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
             <div class="relative z-10">
-            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+            <div class="w-10 h-10 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
                         bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
                         group-hover:scale-105 transition-transform">
                 <img src="assets/servicos/dashboard.png" alt="Dashboard" class="w-10 h-10 object-contain" />
@@ -528,14 +539,15 @@
                         shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
                         hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
                         hover:border-emerald-300/60
-                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform
+                        reveal-right"
                 data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
                 aria-label="API de Integração">
             <div aria-hidden="true"
                 class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
                         bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
             <div class="relative z-10">
-            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+            <div class="w-10 h-10 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
                         bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
                         group-hover:scale-105 transition-transform">
                 <img src="assets/servicos/API.png" alt="API" class="w-10 h-10 object-contain" />
@@ -550,14 +562,15 @@
                         shadow-[0_12px_30px_-12px_rgba(2,6,23,0.12)]
                         hover:shadow-[0_28px_60px_-20px_rgba(16,185,129,0.35)]
                         hover:border-emerald-300/60
-                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform"
+                        transition-all duration-300 hover:-translate-y-1 transform-gpu will-change-transform
+                        reveal-left"
                 data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
                 aria-label="Antifraude">
             <div aria-hidden="true"
                 class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition
                         bg-gradient-to-tr from-emerald-500/25 via-cyan-500/25 to-indigo-600/25"></div>
             <div class="relative z-10">
-            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
+            <div class="w-10 h-10 rounded-xl mb-6 flex items-center justify-center ring-1 ring-slate-200
                         bg-gradient-to-tr from-emerald-400/30 via-cyan-400/30 to-indigo-500/30
                         group-hover:scale-105 transition-transform">
                 <img src="assets/servicos/antifraude.png" alt="Antifraude" class="w-10 h-10 object-contain" />
@@ -605,7 +618,7 @@
       <!-- S920 -->
       <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-emerald-400/30 transition-all" data-tilt-max="8" data-reveal>
         <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
             <img src="assets/produtos/S920.png" alt="POS PAX S920" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
           </div>
           <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(16,185,129,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
@@ -636,7 +649,7 @@
       <!-- A920 -->
       <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-cyan-400/30 transition-all" data-tilt-max="8" data-reveal>
         <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
             <img src="assets/produtos/PAX A920.png" alt="POS PAX A920" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
           </div>
           <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(6,182,212,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
@@ -667,7 +680,7 @@
       <!-- TECTOY P2 -->
       <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-indigo-400/30 transition-all" data-tilt-max="8" data-reveal>
         <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
             <img src="assets/produtos/tectoy.png" alt="POS TECTOY P2" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
           </div>
           <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(59,130,246,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
@@ -698,7 +711,7 @@
       <!-- TEF -->
       <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-teal-400/30 transition-all" data-tilt-max="8" data-reveal>
         <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
             <img src="assets/produtos/TEF.png" alt="TEF LibberPay" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
           </div>
           <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(20,184,166,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
@@ -734,20 +747,19 @@
     @keyframes gradientShift { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }
     @keyframes shine { 0% { transform: translateX(-130%) } 100% { transform: translateX(130%) } }
   </style>
+
+    <!-- Modal de produto -->
+    <div id="product-modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+    <div class="relative mx-auto my-8 w-[92%] max-w-3xl rounded-2xl border border-white/10 bg-slate-900 p-6 text-slate-200 shadow-2xl">
+        <button type="button" data-close-modal
+                class="absolute right-4 top-4 rounded-md bg-white/10 px-2.5 py-1 text-xs font-semibold hover:bg-white/20">
+        Fechar
+        </button>
+        <div id="modal-body" class="prose prose-invert max-w-none"></div>
+    </div>
+    </div>
 </section>
-
-<!-- Modal de produto -->
-<div id="product-modal" class="fixed inset-0 z-[60] hidden">
-  <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
-  <div class="relative mx-auto my-8 w-[92%] max-w-3xl rounded-2xl border border-white/10 bg-slate-900 p-6 text-slate-200 shadow-2xl">
-    <button type="button" data-close-modal
-            class="absolute right-4 top-4 rounded-md bg-white/10 px-2.5 py-1 text-xs font-semibold hover:bg-white/20">
-      Fechar
-    </button>
-    <div id="modal-body" class="prose prose-invert max-w-none"></div>
-  </div>
-</div>
-
     <!-- GerenPIX Section -->
     <section class="py-20 bg-gradient-to-br from-purple-600 via-blue-600 to-teal-500 relative overflow-hidden">
         <!-- Background Pattern -->
@@ -1019,91 +1031,91 @@
     </section>
 
     <!-- Stats Section -->
-        <section id="numeros" class="relative overflow-hidden py-24 bg-slate-950 text-slate-100">
-        <!-- auroras/background -->
-        <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 h-[26rem] w-[26rem] rounded-full bg-emerald-500/20 blur-3xl"></div>
-        <div aria-hidden="true" class="pointer-events-none absolute -bottom-28 -right-16 h-[28rem] w-[28rem] rounded-full bg-cyan-500/20 blur-3xl"></div>
+    <section id="numeros" class="relative overflow-hidden py-24 bg-slate-950 text-slate-100">
+  <!-- auroras/background -->
+  <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 h-[26rem] w-[26rem] rounded-full bg-emerald-500/20 blur-3xl"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-28 -right-16 h-[28rem] w-[28rem] rounded-full bg-cyan-500/20 blur-3xl"></div>
 
-        <div class="container relative z-10 mx-auto px-6">
-            <div class="text-center mb-14">
-            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">
-                Números que
-                <span class="bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
-                Impressionam
-                </span>
-            </h2>
-            <p class="mt-3 text-slate-300">Veja o crescimento da LibberPay e a confiança do mercado</p>
-            <!-- barrinha brilhante -->
-            <div class="mt-6 mx-auto h-1 w-32 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-600 shadow-[0_0_20px_rgba(34,197,94,0.45)]"></div>
-            </div>
+  <div class="container relative z-10 mx-auto px-6 reveal-up-delay">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">
+        Números que
+        <span class="bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+          Impressionam
+        </span>
+      </h2>
+      <p class="mt-3 text-slate-300">Veja o crescimento da LibberPay e a confiança do mercado</p>
+      <!-- barrinha brilhante -->
+      <div class="mt-6 mx-auto h-1 w-32 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-600 shadow-[0_0_20px_rgba(34,197,94,0.45)]"></div>
+    </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Stat -->
-            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
-                <article
-                class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Stat 1 -->
+      <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30 reveal-up-delay">
+        <article
+          class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+                  shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
+                  hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
+                  transition-all duration-300 transform-gpu will-change-transform"
+          data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
+        >
+          <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+          <div class="text-4xl md:text-5xl font-semibold tracking-tight font-mono tabular-nums
+                      bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent
+                      drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+            <span data-count-to="15000" data-suffix="+" data-duration="1400">0</span>
+          </div>
+          <p class="mt-2 text-slate-300">Estabelecimentos Parceiros</p>
+        </article>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30 reveal-up-delay">
+        <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
                         shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
                         hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
                         transition-all duration-300 transform-gpu will-change-transform"
-                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100"
-                >
-                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
-                <div class="text-4xl md:text-5xl font-semibold tracking-tight font-mono tabular-nums
-                            bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent
-                            drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
-                    <span data-count-to="15000" data-suffix="+" data-duration="1400">0</span>
-                </div>
-                <p class="mt-2 text-slate-300">Estabelecimentos Parceiros</p>
-                </article>
-            </div>
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
+          <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+          <div class="text-4xl md:text-5xl font-semibold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+            <span data-count-to="50000" data-suffix="+" data-duration="1400">0</span>
+          </div>
+          <p class="mt-2 text-slate-300">Licenciados Ativos</p>
+        </article>
+      </div>
 
-            <!-- Stat -->
-            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
-                <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
-                                shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
-                                hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
-                                transition-all duration-300 transform-gpu will-change-transform"
-                        data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
-                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
-                <div class="text-4xl md:text-5xl font-semibold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
-                    <span data-count-to="50000" data-suffix="+" data-duration="1400">0</span>
-                </div>
-                <p class="mt-2 text-slate-300">Licenciados Ativos</p>
-                </article>
-            </div>
+      <!-- Stat 3 -->
+      <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30 reveal-up-delay">
+        <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+                        shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
+                        hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
+                        transition-all duration-300 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
+          <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+          <div class="text-4xl md:text-5xl font-semibold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+            <span data-count-to="2.5" data-decimals="1" data-prefix="R$ " data-suffix="B" data-duration="1600">0</span>
+          </div>
+          <p class="mt-2 text-slate-300">Processados Mensalmente</p>
+        </article>
+      </div>
 
-            <!-- Stat -->
-            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
-                <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
-                                shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
-                                hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
-                                transition-all duration-300 transform-gpu will-change-transform"
-                        data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
-                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
-                <div class="text-4xl md:text-5xl font-semibold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
-                    <span data-count-to="2.5" data-decimals="1" data-prefix="R$ " data-suffix="B" data-duration="1600">0</span>
-                </div>
-                <p class="mt-2 text-slate-300">Processados Mensalmente</p>
-                </article>
-            </div>
-
-            <!-- Stat -->
-            <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30">
-                <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
-                                shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
-                                hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
-                                transition-all duration-300 transform-gpu will-change-transform"
-                        data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
-                <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
-                <div class="text-4xl md:text-5xl font-extrabold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
-                    <span data-count-to="99.9" data-decimals="1" data-suffix="%" data-duration="1500">0</span>
-                </div>
-                <p class="mt-2 text-slate-300">Uptime Garantido</p>
-                </article>
-            </div>
-            </div>
-        </div>
-        </section>
+      <!-- Stat 4 -->
+      <div class="p-[1px] rounded-2xl bg-gradient-to-br from-emerald-500/30 via-cyan-500/30 to-indigo-600/30 reveal-up-delay">
+        <article class="group relative rounded-2xl bg-white/5 backdrop-blur p-7 text-center ring-1 ring-white/10
+                        shadow-[0_12px_30px_-12px_rgba(0,0,0,0.8)]
+                        hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(16,185,129,0.35)]
+                        transition-all duration-300 transform-gpu will-change-transform"
+                data-tilt data-tilt-max="10" data-tilt-scale="1.02" data-tilt-perspective="1100">
+          <div aria-hidden="true" class="pointer-events-none absolute -top-px left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 group-hover:opacity-100 transition"></div>
+          <div class="text-4xl md:text-5xl font-extrabold tracking-tight font-mono tabular-nums bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+            <span data-count-to="99.9" data-decimals="1" data-suffix="%" data-duration="1500">0</span>
+          </div>
+          <p class="mt-2 text-slate-300">Uptime Garantido</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contato" class="py-20 bg-gray-50">
@@ -1312,7 +1324,7 @@
     </footer>
 
     <!-- Seu JS externo -->
-    <script src="site.js"></script>
+    <script src="js/site.js"></script>
 
 </body>
 </html>
