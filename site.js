@@ -7,13 +7,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
-
       const header = document.querySelector('header');
       const headerOffset = header ? header.offsetHeight : 0;
-
       const elementPosition = target.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - headerOffset;
-
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   });
@@ -23,7 +20,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 function initStickyHeader() {
   const header = document.getElementById('site-header');
   if (!header) return;
-
   const onScroll = () => {
     if (window.scrollY > 10) {
       header.classList.add('backdrop-blur-md', 'bg-slate-950/60', 'border-b', 'border-white/10');
@@ -40,27 +36,60 @@ function initStickyHeader() {
 // Sombra do header ao rolar
 window.addEventListener('scroll', function() {
   const header = document.querySelector('header');
-  if (window.scrollY > 100) {
-    header.classList.add('shadow-xl');
-  } else {
-    header.classList.remove('shadow-xl');
-  }
+  if (!header) return;
+  if (window.scrollY > 100) header.classList.add('shadow-xl');
+  else header.classList.remove('shadow-xl');
 });
 
 // EmailJS
 (function initEmailJS() {
   if (window.emailjs && typeof emailjs.init === 'function') {
-    emailjs.init('ev12yg_q3vlp5WYd6'); 
+    emailjs.init('ev12yg_q3vlp5WYd6');
   }
 })();
 
-// Formulário de contato
-(function handleContatoForm() {
+// Funções de sucesso (alerta inline) — ÚNICA DEFINIÇÃO
+function showSuccess() {
+  const box = document.getElementById('form-success');
+  if (!box) return;
+  box.classList.remove('hidden');
+  box.animate(
+    [{ transform: 'translateY(-6px)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }],
+    { duration: 320, easing: 'cubic-bezier(.22,.9,.22,1)' }
+  );
+  clearTimeout(showSuccess._t);
+  showSuccess._t = setTimeout(() => hideSuccess(), 6000);
+}
+function hideSuccess() {
+  const box = document.getElementById('form-success');
+  if (!box || box.classList.contains('hidden')) return;
+  const anim = box.animate(
+    [{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-6px)', opacity: 0 }],
+    { duration: 220, easing: 'cubic-bezier(.22,.9,.22,1)' }
+  );
+  anim.onfinish = () => box.classList.add('hidden');
+}
+
+// Fecha o alerta no X — APENAS UMA VEZ
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'dismiss-success' || e.target.closest('#dismiss-success')) {
+    hideSuccess();
+  }
+});
+
+// Formulário de contato — APENAS UMA VERSÃO (dentro do DOMContentLoaded)
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contatoForm');
-  if (!form) return;
+  if (!form) {
+    console.warn('Form #contatoForm não encontrado');
+    return;
+  }
+  console.log('Handler do formulário inicializado');
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();
+    console.log('SUBMIT DISPAROU');
+
     const button = form.querySelector('button[type="submit"]');
     const originalText = button.textContent;
 
@@ -80,17 +109,23 @@ window.addEventListener('scroll', function() {
       button.classList.add('bg-green-600');
       form.reset();
       restoreButton();
+      showSuccess();
     };
 
     if (window.emailjs && typeof emailjs.sendForm === 'function') {
       emailjs.sendForm('service_2y9uacn', 'template_hxror5r', form)
-        .then(() => { alert('Mensagem enviada com sucesso!'); successUI(); },
-              (error) => { alert('Erro: ' + JSON.stringify(error)); button.textContent = originalText; button.disabled = false; });
+        .then((r) => { console.log('EMAILJS OK', r); successUI(); })
+        .catch((error) => {
+          console.error('ERRO EMAILJS', error);
+          alert('Erro: ' + JSON.stringify(error));
+          button.textContent = originalText;
+          button.disabled = false;
+        });
     } else {
-      setTimeout(successUI, 1500);
+      setTimeout(() => { console.log('Fallback sucesso'); successUI(); }, 1200);
     }
   });
-})();
+});
 
 /* === Bolhas === */
 function createProdutosBubbles() {
@@ -219,67 +254,42 @@ function initNavUnderline() {
 
 function initScrollReveal() {
   const applyRevealStyles = (el, type) => {
-    el.style.transition = 'none'; // remove transição para resetar
+    el.style.transition = 'none';
     el.style.opacity = '0';
     el.style.willChange = 'transform, opacity';
-
     switch(type) {
-      case 'reveal-left':
-        el.style.transform = 'translateX(-50px)';
-        break;
-      case 'reveal-right':
-        el.style.transform = 'translateX(50px)';
-        break;
-      case 'reveal-up-delay':
-        el.style.transform = 'translateY(30px)';
-        break;
-      default:
-        el.style.transform = 'translateY(40px)';
+      case 'reveal-left': el.style.transform = 'translateX(-50px)'; break;
+      case 'reveal-right': el.style.transform = 'translateX(50px)'; break;
+      case 'reveal-up-delay': el.style.transform = 'translateY(30px)'; break;
+      default: el.style.transform = 'translateY(40px)';
     }
-
-    // Força o browser a aplicar as mudanças antes de reativar a transição
-    el.offsetHeight; // força reflow
-
-    // Reativa a transição
+    el.offsetHeight;
     el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    if(type === 'reveal-up-delay') {
-      el.style.transitionDelay = '0.3s';
-    } else {
-      el.style.transitionDelay = '0s';
-    }
+    el.style.transitionDelay = (type === 'reveal-up-delay') ? '0.3s' : '0s';
   };
-
   const activateReveal = (el) => {
     el.style.opacity = '1';
     el.style.transform = 'translate(0, 0)';
     el.style.transitionDelay = '0s';
   };
-
   const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up-delay');
-
-  // Inicialmente aplica o estilo invisível a todos
   revealElements.forEach(el => {
     const classes = Array.from(el.classList);
     const revealType = classes.find(c => c.startsWith('reveal'));
     applyRevealStyles(el, revealType);
   });
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const el = entry.target;
       const classes = Array.from(el.classList);
       const revealType = classes.find(c => c.startsWith('reveal'));
-
-      if (entry.isIntersecting) {
-        activateReveal(el);
-      } else {
-        applyRevealStyles(el, revealType);
-      }
+      if (entry.isIntersecting) activateReveal(el);
+      else applyRevealStyles(el, revealType);
     });
   }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
-
   revealElements.forEach(el => observer.observe(el));
 }
+
 /* === Keyframes === */
 const style = document.createElement('style');
 style.textContent = `
@@ -305,8 +315,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
 });
 
-document.getElementById('site-logo').addEventListener('click', function (e) {
-  e.preventDefault();
-  // Recarrega a página — comportamento idêntico a entrar pela primeira vez
-  location.reload();
-});
+// Listener do logo (tolerante a ausência do elemento)
+const siteLogo = document.getElementById('site-logo');
+if (siteLogo) {
+  siteLogo.addEventListener('click', function (e) {
+    e.preventDefault();
+    location.reload();
+  });
+}
