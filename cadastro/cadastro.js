@@ -1,21 +1,17 @@
-// cadastro.js
-
 let tipoSelecionado = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // opcional: nada aqui, só garante que o DOM existe
+  emailjs.init('ev12yg_q3vlp5WYd6');
 });
 
 function selecionarTipo(tipo) {
   tipoSelecionado = tipo;
 
-  // Alterna telas
   const selecao = document.getElementById("selecaoTipo");
   const container = document.getElementById("containerFormulario");
   selecao?.classList.add("hidden");
   container?.classList.remove("hidden");
 
-  // Header do card
   const iconeTipo = document.getElementById("iconeTipo");
   const titulo = document.getElementById("tituloFormulario");
   const descricao = document.getElementById("descricaoFormulario");
@@ -47,11 +43,7 @@ function voltarSelecao() {
   tipoSelecionado = null;
 }
 
-function novoFormulario() {
-  voltarSelecao();
-}
-
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
   const btn = document.getElementById("btnSubmit");
   if (!btn) return;
@@ -69,10 +61,14 @@ function handleSubmit(event) {
   const data = Object.fromEntries(new FormData(form));
   data.tipo_pessoa = tipoSelecionado;
 
-  console.log("Dados do formulário:", data);
+  const templateParams = mapFormDataToEmailTemplate(data);
 
-  // Simula envio
-  setTimeout(() => {
+  // Escolhe o template conforme o tipo
+  const templateId = data.tipo_pessoa === 'fisica' ? 'template_pqgjzvt' : 'template_82f7ail';
+
+  try {
+    await emailjs.send('service_2y9uacn', templateId, templateParams);
+
     document.getElementById("mensagemSucesso")?.classList.remove("hidden");
     form.classList.add("hidden");
 
@@ -84,7 +80,12 @@ function handleSubmit(event) {
       </svg>
       Cadastrar Estabelecimento
     `;
-  }, 1200);
+  } catch (err) {
+    alert('Erro ao enviar os dados. Tente novamente.');
+    btn.disabled = false;
+    btn.innerHTML = "Cadastrar Estabelecimento";
+    console.error('Erro EmailJS:', err);
+  }
 }
 
 // Montadores dos formulários
@@ -104,11 +105,23 @@ function montarFormularioPF() {
       ${input("Nome Completo *","nome_completo","text","Digite o nome completo")}
       ${input("E-mail *","email","email","email@exemplo.com")}
       ${input("Telefone Celular *","telefone","tel","(00) 00000-0000",'oninput="maskPhone(this)" maxlength="15"')}
-      ${input("Nome da Mãe *","nome_mae","text","Digite o nome da mãe")}
+      ${input("Nome da Mãe *","nome_mae","text","Digite a nome da mãe")}
       ${input("Área de Atuação *","area_atuacao","text","Ex: Comércio, Serviços...")}
-      ${input("CEP *","cep","text","00000-000",'oninput="maskCEP(this)" maxlength="9"')}
-      ${input("Nome da Rua *","nome_rua","text","Digite o nome da rua")}
-      ${input("Número *","numero","text","Número")}
+      
+      <div class="md:col-span-2 mt-4 pt-4 border-t-2 border-[#00D9A3]/20">
+        <h3 class="text-xl font-bold text-[#0A2F3F] mb-4 flex items-center gap-2">
+          <div class="w-1 h-6 bg-gradient-to-b from-[#00D9A3] to-[#00F5B8] rounded-full"></div>
+          Endereço
+        </h3>
+      </div>
+
+      ${input("CEP *","cep_pf","text","00000-000",'oninput="maskCEP(this); buscarCEP(this.value, \'pf\')" maxlength="9"')}
+      ${input("Rua *","rua_pf","text","Nome da rua",'id="rua_pf"')}
+      ${input("Número *","numero_pf","text","Número")}
+      ${input("Complemento","complemento_pf","text","Apto, bloco, etc.",'required=""')}
+      ${input("Bairro *","bairro_pf","text","Bairro",'id="bairro_pf"')}
+      ${input("Cidade *","cidade_pf","text","Cidade",'id="cidade_pf"')}
+      ${input("Estado *","estado_pf","text","UF",'id="estado_pf" maxlength="2"')}
     </div>
   `;
 }
@@ -126,9 +139,21 @@ function montarFormularioPJ() {
       ${input("Razão Social *","razao_social","text","Digite a razão social")}
       ${input("Nome Fantasia *","nome_fantasia_pj","text","Digite o nome fantasia")}
       ${input("Data de Fundação *","data_fundacao","date")}
-      <div class="md:col-span-2">
-        ${input("Endereço Completo *","endereco_completo","text","Rua, número, bairro, cidade, estado")}
+
+      <div class="md:col-span-2 mt-4 pt-4 border-t-2 border-[#00D9A3]/20">
+        <h3 class="text-xl font-bold text-[#0A2F3F] mb-4 flex items-center gap-2">
+          <div class="w-1 h-6 bg-gradient-to-b from-[#00D9A3] to-[#00F5B8] rounded-full"></div>
+          Endereço da Empresa
+        </h3>
       </div>
+
+      ${input("CEP *","cep_pj","text","00000-000",'oninput="maskCEP(this); buscarCEP(this.value, \'pj\')" maxlength="9"')}
+      ${input("Rua *","rua_pj","text","Nome da rua",'id="rua_pj"')}
+      ${input("Número *","numero_pj","text","Número")}
+      ${input("Complemento","complemento_pj","text","Apto, sala, etc.",'required=""')}
+      ${input("Bairro *","bairro_pj","text","Bairro",'id="bairro_pj"')}
+      ${input("Cidade *","cidade_pj","text","Cidade",'id="cidade_pj"')}
+      ${input("Estado *","estado_pj","text","UF",'id="estado_pj" maxlength="2"')}
 
       <div class="md:col-span-2 mt-4 pt-4 border-t-2 border-[#00D9A3]/20">
         <h3 class="text-xl font-bold text-[#0A2F3F] mb-4 flex items-center gap-2">
@@ -140,14 +165,13 @@ function montarFormularioPJ() {
       ${input("Nome Completo do Representante *","nome_completo_rep","text","Digite o nome completo")}
       ${input("CPF do Representante Legal *","cpf_representante","text","000.000.000-00",'oninput="maskCPF(this)" maxlength="14"')}
       ${input("Data de Nascimento do Representante *","data_nascimento_rep","date")}
-      ${input("Nome da Mãe do Representante *","nome_mae_rep","text","Digite o nome da mãe")}
+      ${input("Nome da Mãe do Representante *","nome_mae_rep","text","Digite a nome da mãe")}
       ${input("Telefone / Celular *","telefone_pj","tel","(00) 00000-0000",'oninput="maskPhone(this)" maxlength="15"')}
       ${input("E-mail *","email_pj","email","email@exemplo.com")}
     </div>
   `;
 }
 
-// Helper para montar inputs padronizados
 function input(label, name, type="text", placeholder="", extraAttrs="") {
   return `
     <div class="space-y-2">
@@ -159,7 +183,31 @@ function input(label, name, type="text", placeholder="", extraAttrs="") {
   `;
 }
 
-// Máscaras
+async function buscarCEP(cep, tipo) {
+  const cepLimpo = cep.replace(/\D/g, "");
+  if (cepLimpo.length !== 8) return;
+
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+    const data = await response.json();
+
+    if (data.erro) {
+      alert("CEP não encontrado!");
+      return;
+    }
+
+    document.getElementById(`rua_${tipo}`).value = data.logradouro || "";
+    document.getElementById(`bairro_${tipo}`).value = data.bairro || "";
+    document.getElementById(`cidade_${tipo}`).value = data.localidade || "";
+    document.getElementById(`estado_${tipo}`).value = data.uf || "";
+
+    document.querySelector(`input[name="numero_${tipo}"]`)?.focus();
+  } catch (error) {
+    console.error("Erro ao buscar CEP:", error);
+    alert("Erro ao buscar CEP. Tente novamente.");
+  }
+}
+
 function maskCPF(input) {
   let v = input.value.replace(/\D/g, "");
   v = v.replace(/(\d{3})(\d)/, "$1.$2");
@@ -186,3 +234,49 @@ function maskCEP(input) {
   v = v.replace(/^(\d{5})(\d)/, "$1-$2");
   input.value = v;
 }
+
+function mapFormDataToEmailTemplate(data) {
+  const isPJ = data.tipo_pessoa === 'juridica';
+  const isPF = data.tipo_pessoa === 'fisica';
+
+  const prefix = isPJ ? 'pj' : 'pf';
+  const rua = data[`rua_${prefix}`] || '';
+  const numero = data[`numero_${prefix}`] || '';
+  const complemento = data[`complemento_${prefix}`] || '';
+  const bairro = data[`bairro_${prefix}`] || '';
+  const cidade = data[`cidade_${prefix}`] || '';
+  const estado = data[`estado_${prefix}`] || '';
+  const cep = data[`cep_${prefix}`] || '';
+
+  return {
+    tipo_pessoa: data.tipo_pessoa,
+    is_pf: isPF,
+    is_pj: isPJ,
+    razao_social: data.razao_social || '',
+    nome_fantasia: data.nome_fantasia_pj || data.nome_fantasia || '',
+    cnpj: data.cnpj || '',
+    data_fundacao: data.data_fundacao || '',
+    nome_completo: data.nome_completo || data.nome_completo_rep || '',
+    cpf: data.cpf || data.cpf_representante || '',
+    data_nascimento: data.data_nascimento || data.data_nascimento_rep || '',
+    email: data.email || data.email_pj || '',
+    telefone: data.telefone || data.telefone_pj || '',
+    cep,
+    rua,
+    numero,
+    complemento,
+    bairro,
+    cidade,
+    estado
+  };
+}
+
+// Exponha as funções para o escopo global para uso no HTML inline
+window.selecionarTipo = selecionarTipo;
+window.voltarSelecao = voltarSelecao;
+window.handleSubmit = handleSubmit;
+window.buscarCEP = buscarCEP;
+window.maskCPF = maskCPF;
+window.maskCNPJ = maskCNPJ;
+window.maskPhone = maskPhone;
+window.maskCEP = maskCEP;
