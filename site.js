@@ -1,5 +1,5 @@
 // =================================================================
-// ARQUIVO JS COMPLETO 
+// ARQUIVO JS COMPLETO E ORGANIZADO
 // =================================================================
 
 // --- INICIALIZAÇÃO PRINCIPAL ---
@@ -98,7 +98,7 @@ function initHeaderShadow() {
 // Inicializa o serviço EmailJS com a sua chave de API pública.
 function initEmailJS() {
     if (window.emailjs && typeof emailjs.init === 'function') {
-        emailjs.init('ev12yg_q3vlp5WYd6');
+        emailjs.init('ovJAqytzUpcymwzIx');
     }
 }
 
@@ -143,19 +143,16 @@ function initContactForm() {
         button.textContent = 'Enviando...';
         button.disabled = true;
 
-        emailjs.sendForm('service_2y9uacn', 'template_hxror5r', this)
+        // Envia o formulário via EmailJS
+        emailjs.sendForm('service_gv77txj', 'template_y127btr', this)
             .then(() => {
-                button.textContent = 'Mensagem Enviada!';
-                button.classList.add('bg-green-600');
-                form.reset();
                 showSuccess();
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.disabled = false;
-                    button.classList.remove('bg-green-600');
-                }, 3000);
+                form.reset();
             }, (error) => {
-                alert('Erro ao enviar a mensagem: ' + JSON.stringify(error));
+                alert('Erro ao enviar a mensagem, tente novamente mais tarde.');
+                console.error('EmailJS error:', error);
+            })
+            .finally(() => {
                 button.textContent = originalText;
                 button.disabled = false;
             });
