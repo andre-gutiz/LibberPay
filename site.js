@@ -6,7 +6,6 @@
 // Roda todas as funções depois que a página carregou completamente.
 document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
-    initMobileMenu();
     initStickyHeader();
     initEmailJS();
     initContactForm();
@@ -20,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarrosselSweda();
     initAnimateSpecs();
     initLogoReload();
+    initCarrosselProdutos();
+
 });
 
 // --- INJEÇÃO DE KEYFRAMES (Feito uma única vez) ---
@@ -61,22 +62,7 @@ function initSmoothScroll() {
     });
 }
 
-// Controla a abertura e fechamento do menu de navegação em dispositivos móveis.
-function initMobileMenu() {
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("mobile-menu");
-    if (!btn || !menu) return;
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-        menu.classList.toggle("flex");
-    });
-    menu.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener("click", () => {
-            menu.classList.add("hidden");
-            menu.classList.remove("flex");
-        });
-    });
-}
+
 
 // Adiciona uma sombra ao header quando o usuário rola a página para baixo.
 function initStickyHeader() {
@@ -326,6 +312,77 @@ function initScrollReveal() {
     `;
     document.head.appendChild(style);
 }
+
+// Gerencia toda a lógica do carrossel de produtos (avançar, voltar, etc.).
+function initCarrosselProdutos() {
+    const track = document.getElementById('produtosCarouselTrack');
+    const btnPrev = document.getElementById('produtosPrev');
+    const btnNext = document.getElementById('produtosNext');
+
+    const slides = track.querySelectorAll('article');
+
+    let currentIndex = 0;
+
+    function updateButtons() {
+        btnPrev.disabled = currentIndex === 0;
+        btnNext.disabled = currentIndex === slides.length - 1;
+        btnPrev.classList.toggle('opacity-30', btnPrev.disabled);
+        btnNext.classList.toggle('opacity-30', btnNext.disabled);
+    }
+
+    function scrollToIndex(index) {
+        currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+        const targetSlide = slides[currentIndex];
+        if (targetSlide) {
+            const scrollPosition = targetSlide.offsetLeft - (track.offsetWidth - targetSlide.offsetWidth) / 2;
+            track.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+            updateButtons();
+        }
+    }
+
+    btnPrev.addEventListener('click', () => {
+        scrollToIndex(currentIndex - 1);
+    });
+
+    btnNext.addEventListener('click', () => {
+        scrollToIndex(currentIndex + 1);
+    });
+
+    // Atualiza o índice atual ao rolar manualmente
+    let scrollEndTimer;
+    track.addEventListener('scroll', () => {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+            let closestIndex = 0;
+            let minDistance = Infinity;
+            const trackCenter = track.scrollLeft + track.offsetWidth / 2;
+            slides.forEach((slide, index) => {
+                const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+                const distance = Math.abs(trackCenter - slideCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = index;
+                }
+            });
+            if (closestIndex !== currentIndex) {
+                currentIndex = closestIndex;
+                updateButtons();
+            }
+        }, 150);
+    }, { passive: true });
+
+    updateButtons();
+
+    // Ajusta o scroll ao redimensionar a janela
+    window.addEventListener('resize', () => {
+        const targetSlide = slides[currentIndex];
+        if (targetSlide) {
+            const scrollPosition = targetSlide.offsetLeft - (track.offsetWidth - targetSlide.offsetWidth) / 2;
+            track.scrollTo({ left: scrollPosition, behavior: 'auto' });
+        }
+    });
+}
+
 
 // Gerencia toda a lógica do carrossel de produtos Sweda (avançar, voltar, etc.).
 function initCarrosselSweda() {
