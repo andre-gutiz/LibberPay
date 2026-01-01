@@ -108,15 +108,15 @@
                     </a>
                 </div>
                 <!-- Hambúrguer Mobile (☰) -->
-                    <div class="flex md:hidden">
-                    <button id="menu-btn" class="p-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-md">
+                    <div class="flex md:hidden" h>
+                    <button id="menu-btn" aria-label="abrir menu" class="p-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-md">
                         ☰
                     </button>
                     </div>
                 </div>
 
                 <!-- Menu Mobile -->
-                <div id="mobile-menu" class="hidden flex-col gap-4 mt-4 bg-black/80 text-center p-4 rounded-lg md:hidden">
+                <div id="mobile-menu" class="hidden md:hidden flex-col gap-4 mt-4 bg-black/80 text-center p-4 rounded-lg">
                     <a href="#home" class="block text-white hover:text-cyan-400 transition">Início</a>
                     <a href="#sobre" class="block text-white hover:text-cyan-400 transition">Sobre</a>
                     <a href="#servicos" class="block text-white hover:text-cyan-400 transition">Serviços</a>
@@ -629,163 +629,269 @@ Nosso atendimento humanizado e direto é o que nos diferencia. Aqui não existe 
 
   <div class="container relative z-10 mx-auto px-6">
     <div class="max-w-3xl">
-      <h2 class="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-emerald-300 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+      <h2 class="text-3xl md:text-5xl font-semibold bg-gradient-to-r from-emerald-300 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
         Nossos Produtos
       </h2>
       <p class="mt-3 text-slate-300">Tecnologia, desempenho e segurança para o seu negócio.</p>
     </div>
 
-    <!-- GRID -->
-    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+<div class="relative mt-10">
+      <!-- Botões de navegação -->
+      <button id="produtosPrev" aria-label="Anterior"
+  class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4
+        rounded-full bg-slate-900/70 backdrop-blur text-white
+        hover:bg-slate-800 transition z-20 gradient-border">
+  <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12z"/></svg>
+</button>
+<button id="produtosNext" aria-label="Próximo"
+  class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4
+        rounded-full bg-slate-900/70 backdrop-blur text-white
+        hover:bg-slate-800 transition z-20 gradient-border">
+  <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 16.59L10 18l6-6l-6-6l-1.41 1.41L13.17 12z"/></svg>
+</button>
 
-      <!-- S920 -->
-      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-emerald-400/30 transition-all" data-tilt-max="8" data-reveal>
-        <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
-            <img src="assets/produtos/S920.png" alt="POS PAX S920" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+      <!-- Track do carrossel -->
+      <div id="produtosCarouselTrack"
+           class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2
+                  [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+           tabindex="0" aria-label="Carrossel de produtos">
+        
+        <!-- Produto 1 -->
+        <article class="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[30%] xl:w-[22%] js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-emerald-400/30 transition-all transform scale-100 flex flex-col" data-tilt-max="8" data-reveal>
+          <div class="relative">
+            <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
+              <img src="assets/produtos/S920 (2).png" alt="POS PAX S920" class="max-h-[45%] object-contain scale-150 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(16,185,129,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
           </div>
-          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(16,185,129,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-semibold text-white">PAX S920</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Sistema Prolin</li>
-            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Bateria até 6h</li>
-            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Touch 3.6″</li>
-            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Wi‑Fi / 4G / 3G / 2G</li>
-            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>NFC • Chip • Tarja</li>
-            <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão 40mm</li>
-          </ul>
-          <a href="#contato" aria-label="Quero este: PAX S920"
-             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
-                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#10b981] [--g2:#06b6d4] [--g3:#3b82f6]
-                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
-                    shadow-[0_12px_40px_-10px_rgba(6,182,212,0.6)]
-                    relative overflow-hidden">
-            Quero Este
-            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
-          </a>
-        </div>
-      </article>
-
-      <!-- A920 -->
-      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-cyan-400/30 transition-all" data-tilt-max="8" data-reveal>
-        <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
-            <img src="assets/produtos/PAX A920.png" alt="POS PAX A920" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-white">PAX S920</h3>
+            <ul class="mt-3 space-y-2 text-sm flex-1">
+              <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Sistema Prolin</li>
+              <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Bateria até 6h</li>
+              <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Touch 3.6″</li>
+              <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Wi‑Fi / 4G / 3G / 2G</li>
+              <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>NFC • Chip • Tarja</li>
+              <li class="flex items-center gap-2 text-emerald-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão 40mm</li>
+            </ul>
+            <a href="#contato" aria-label="Quero este: PAX S920"
+               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                      bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#06b6d4] [--g2:#3b82f6] [--g3:#10b981]
+                      bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                      shadow-[0_12px_40px_-10px_rgba(6,182,212,0.6)]
+                      relative overflow-hidden">
+              Quero Este
+              <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+            </a>
           </div>
-          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(6,182,212,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-semibold text-white">PAX A920</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Android 7.1</li>
-            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 5.5″ HD</li>
-            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Câmera 5MP + frontal 0.3MP</li>
-            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>4G • Wi‑Fi 2.4GHz • BT 5.0</li>
-            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Bateria 5150mAh</li>
-            <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão 40 linhas/s</li>
-          </ul>
-          <a href="#contato" aria-label="Quero este: PAX A920"
-             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
-                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#06b6d4] [--g2:#3b82f6] [--g3:#10b981]
-                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
-                    shadow-[0_12px_40px_-10px_rgba(6,182,212,0.6)]
-                    relative overflow-hidden">
-            Quero Este
-            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
-          </a>
-        </div>
-      </article>
+        </article>
 
-      <!-- TECTOY P2 -->
-      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-indigo-400/30 transition-all" data-tilt-max="8" data-reveal>
-        <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
-            <img src="assets/produtos/tectoy.png" alt="POS TECTOY P2" class="max-h-[45%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+        <!-- Produto 2 -->
+        <article class="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[30%] xl:w-[22%] js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-cyan-400/30 transition-all flex flex-col" data-tilt-max="8" data-reveal>
+          <div class="relative">
+            <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
+              <img src="assets/produtos/PAX_A920.png" alt="POS PAX A920" class="max-h-[45%] object-contain scale-150 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(6,182,212,.25), rgba(59,130,246,.25), transparent 30%); filter: blur(14px);"></div>
+          </div> 
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-white">PAX A920</h3>
+            <ul class="mt-3 space-y-2 text-sm flex-1">
+              <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Android 7.1</li>
+              <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 5.5″ HD</li>
+              <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Câmera 5MP + frontal 0.3MP</li>
+              <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>4G • Wi‑Fi 2.4GHz • BT 5.0</li>
+              <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Bateria 5150mAh</li>
+              <li class="flex items-center gap-2 text-cyan-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão 40 linhas/s</li>
+            </ul>
+            <a href="#contato" aria-label="Quero este: PAX A920"
+               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                      bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#06b6d4] [--g2:#3b82f6] [--g3:#10b981]
+                      bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                      shadow-[0_12px_40px_-10px_rgba(6,182,212,0.6)]
+                      relative overflow-hidden">
+              Quero Este
+              <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+            </a>
           </div>
-          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(59,130,246,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-semibold text-white">TECTOY P2</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 5.5″ FHD • design fino</li>
-            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Traseira antiderrapante</li>
-            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Câmera 5MP (flash + AF)</li>
-            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão até 70mm/s</li>
-            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Leitor Biométrico Integrado (Opcional)</li>
-            <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dois Cartões SIM - Maior Conectividade</li>
-          </ul>
-          <a href="#contato" aria-label="Quero este: TECTOY P2"
-             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
-                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#3b82f6] [--g2:#06b6d4] [--g3:#10b981]
-                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
-                    shadow-[0_12px_40px_-10px_rgba(59,130,246,0.55)]
-                    relative overflow-hidden">
-            Quero Este
-            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
-          </a>
-        </div>
-      </article>
+        </article>
 
-      <!-- TEF -->
-      <article class="js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-teal-400/30 transition-all" data-tilt-max="8" data-reveal>
-        <div class="relative">
-          <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
-            <img src="assets/produtos/TEF.png" alt="TEF LibberPay" class="max-h-[100%] object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+        <!-- Produto 3 -->
+        <article class="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[30%] xl:w-[22%] js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-indigo-400/30 transition-all flex flex-col" data-tilt-max="8" data-reveal>
+          <div class="relative">
+            <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
+              <img src="assets/produtos/tectoy2.png" alt="POS TECTOY P2" class="max-h-[45%] object-contain scale-150 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(59,130,246,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
           </div>
-          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(20,184,166,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-semibold text-white">TEF</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Multi‑adquirência</li>
-            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Integra com sua automação</li>
-            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Qualquer bandeira e vouchers</li>
-            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Gestão otimizada e segura</li>
-            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Aumento da Lucratividade</li>
-            <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Operação Facilitada</li>
-          </ul>
-          <a href="#contato" aria-label="Quero este: TEF"
-             class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
-                    bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#14b8a6] [--g2:#06b6d4] [--g3:#10b981]
-                    bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
-                    shadow-[0_12px_40px_-10px_rgba(20,184,166,0.6)]
-                    relative overflow-hidden">
-            Quero Este
-            <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
-          </a>
-        </div>
-      </article>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-white">TECTOY P2</h3>
+            <ul class="mt-3 space-y-2 text-sm flex-1">
+              <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 5.5″ FHD • design fino</li>
+              <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Traseira antiderrapante</li>
+              <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Câmera 5MP (flash + AF)</li>
+              <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Impressão até 70mm/s</li>
+              <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Leitor Biométrico Integrado (Opcional)</li>
+              <li class="flex items-center gap-2 text-indigo-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dois Cartões SIM - Maior Conectividade</li>
+            </ul>
+            <a href="#contato" aria-label="Quero este: TECTOY P2"
+               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                      bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#14b8a6] [--g2:#06b6d4] [--g3:#10b981]
+                      bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                      shadow-[0_12px_40px_-10px_rgba(20,184,166,0.6)]
+                      relative overflow-hidden">
+              Quero Este
+              <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+            </a>
+          </div>
+        </article>
 
+        <!-- Produto 4 -->
+        <article class="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[30%] xl:w-[22%] js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-teal-400/30 transition-all flex flex-col" data-tilt-max="8" data-reveal>
+          <div class="relative">
+            <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
+              <img src="assets/produtos/TEFF.png" alt="TEF LibberPay" class="max-h-[45%] object-contain scale-150 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(20,184,166,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-white">TEF</h3>
+            <ul class="mt-3 space-y-2 text-sm flex-1">
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Multi‑adquirência</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Integra com sua automação</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Qualquer bandeira e vouchers</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Gestão otimizada e segura</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Aumento da Lucratividade</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Operação Facilitada</li>
+            </ul>
+            <a href="#contato" aria-label="Quero este: TEF"
+               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                      bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#14b8a6] [--g2:#06b6d4] [--g3:#10b981]
+                      bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                      shadow-[0_12px_40px_-10px_rgba(20,184,166,0.6)]
+                      relative overflow-hidden" >
+              Quero Este
+              <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Produto 5 -->
+        <article class="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[30%] xl:w-[22%] js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-teal-400/30 transition-all flex flex-col" data-tilt-max="8" data-reveal>
+          <div class="relative">
+            <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
+              <img src="assets/produtos/A960.png" alt="TEF LibberPay" class="max-h-[45%] object-contain scale-150 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(20,184,166,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-white">A960</h3>
+            <ul class="mt-3 space-y-2 text-sm flex-1">
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Android 12</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>OCTA-CORE @1.6GHz</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 6.0 Touch - 720x1440</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>4GB RAM + 64GB FLASH (MICRO SD ATÉ 128GB)</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Camera 2M FF / 5M FF Front</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Atendimento agilizado</li>
+            </ul>
+            <a href="#contato" aria-label="Quero este: TEF"
+               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                      bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#14b8a6] [--g2:#06b6d4] [--g3:#10b981]
+                      bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                      shadow-[0_12px_40px_-10px_rgba(20,184,166,0.6)]
+                      relative overflow-hidden">
+              Quero Este
+              <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Produto 6 -->
+        <article class="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[30%] xl:w-[22%] js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-teal-400/30 transition-all flex flex-col" data-tilt-max="8" data-reveal>
+          <div class="relative">
+            <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
+              <img src="assets/produtos/A910s.png" alt="TEF LibberPay" class="max-h-[45%] object-contain scale-150 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(20,184,166,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-white">A910s</h3>
+            <ul class="mt-3 space-y-2 text-sm flex-1">
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Android 10 PayDroid</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Cortex A53 Quad‑Core 1.4GHz</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 5" Touch IPS HD 720x1280</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Leitor Chip, NFC e Tarja Magnética</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>4G + Wi‑Fi + Bluetooth + Impressora térmica</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Transações mais rápidas</li>
+            </ul>
+            <a href="#contato" aria-label="Quero este: TEF"
+               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                      bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#14b8a6] [--g2:#06b6d4] [--g3:#10b981]
+                      bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                      shadow-[0_12px_40px_-10px_rgba(20,184,166,0.6)]
+                      relative overflow-hidden">
+              Quero Este
+              <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Produto 7 -->
+        <article class="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[30%] xl:w-[22%] js-tilt group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[.06] backdrop-blur-md hover:border-teal-400/30 transition-all flex flex-col" data-tilt-max="8" data-reveal>
+          <div class="relative">
+            <div class="aspect-[3/4] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center reveal-up-delay">
+              <img src="assets/produtos/A35.png" alt="TEF LibberPay" class="max-h-[45%] object-contain scale-150 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: conic-gradient(from 180deg at 50% 50%, rgba(20,184,166,.25), rgba(6,182,212,.25), transparent 30%); filter: blur(14px);"></div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-white">Pinpad A35</h3>
+            <ul class="mt-3 space-y-2 text-sm flex-1">
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Android 10 PayDroid</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Processador Quad‑Core Cortex A53 1.6GHz</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Leitor Chip & PIN, NFC e Tarja Magnética</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tela 4" Touch WVGA 480x800</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Wi‑Fi 2.4/5GHz, RS232, USB 2.0 e acessórios profissionais</li>
+              <li class="flex items-center gap-2 text-teal-300"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Integração com Autoatendimentos</li>
+            </ul>
+            <a href="#contato" aria-label="Quero este: TEF"
+               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold
+                      bg-[linear-gradient(90deg,var(--g1),var(--g2),var(--g3))] [--g1:#14b8a6] [--g2:#06b6d4] [--g3:#10b981]
+                      bg-[length:200%_100%] animate-[gradientShift_6s_linear_infinite]
+                      shadow-[0_12px_40px_-10px_rgba(20,184,166,0.6)]
+                      relative overflow-hidden">
+              Quero Este
+              <span class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%); animation: shine 1.6s ease-in-out infinite;"></span>
+            </a>
+          </div>
+        </article>
+
+      </div>
     </div>
   </div>
 
   <style>
-    @keyframes bgslide { from { background-position: 0 0 } to { background-position: 200% 0 } }
     @keyframes gradientShift { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }
     @keyframes shine { 0% { transform: translateX(-130%) } 100% { transform: translateX(130%) } }
+      .gradient-border {
+  border-radius: 9999px;
+  background-color: rgba(15, 23, 42, 0.7);
+  padding: 0.75rem;
+  color: white;
+  box-shadow: 0 0 8px 2px #10b981, 0 0 12px 4px #06b6d4, 0 0 16px 6px #3b82f6;
+}
   </style>
-
-    <!-- Modal de produto -->
-    <div id="product-modal" class="fixed inset-0 z-[60] hidden">
-    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
-    <div class="relative mx-auto my-8 w-[92%] max-w-3xl rounded-2xl border border-white/10 bg-slate-900 p-6 text-slate-200 shadow-2xl">
-        <button type="button" data-close-modal
-                class="absolute right-4 top-4 rounded-md bg-white/10 px-2.5 py-1 text-xs font-semibold hover:bg-white/20">
-        Fechar
-        </button>
-        <div id="modal-body" class="prose prose-invert max-w-none"></div>
-    </div>
-    </div>
 </section>
 
     <!--  Products Section Sweda -->
-    <section id="produtos-sweda" class="relative w-full bg-slate-950 py-16 overflow-hidden">
+  <section id="produtos-sweda" class="relative w-full bg-slate-950 py-16 overflow-hidden">
   
   <!-- BOLHAS FLUTUANTES (Camada de fundo) -->
   <div id="sweda-bubbles" class="absolute inset-0 pointer-events-none"></div>
@@ -1620,6 +1726,7 @@ Nosso atendimento humanizado e direto é o que nos diferencia. Aqui não existe 
 </section>
 
 <!-- Botão WhatsApp com a IMAGEM pulsante -->
+<!-- Botão WhatsApp com a IMAGEM pulsante -->
 <div class="fixed bottom-6 left-6 z-50">
   <a href="https://wa.me/5511971379051"
      target="_blank"
@@ -1629,12 +1736,15 @@ Nosso atendimento humanizado e direto é o que nos diferencia. Aqui não existe 
             hover:bg-green-500 transition-colors duration-300">
 
     <!-- Círculo container (fundo fixo) -->
-    <div class="flex items-center justify-center w-16 h-16 rounded-full
-                bg-green-500 group-hover:bg-green-700 transition-colors duration-300">
+    <div class="flex items-center justify-center 
+                w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
+                rounded-full bg-green-500 group-hover:bg-green-700 
+                transition-colors duration-300">
       
       <!-- IMAGEM maior e pulsante -->
       <img src="assets/servicos/logo whats.png" alt="WhatsApp"
-           class="w-12 h-12 object-contain pointer-events-none select-none animate-pulse" />
+           class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 
+                  object-contain pointer-events-none select-none animate-pulse" />
       
     </div>
 
@@ -1647,6 +1757,7 @@ Nosso atendimento humanizado e direto é o que nos diferencia. Aqui não existe 
     </span>
   </a>
 </div>
+
     <!-- Footer -->
         <footer class="bg-black text-white py-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
